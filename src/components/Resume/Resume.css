@@ -1,0 +1,141 @@
+.resume {
+  padding-top: 90px;
+  padding-bottom: 72px;
+}
+
+.resume__container {
+  display: flex;
+
+  align-items: center;
+}
+
+.resume__option {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  border-bottom: 1px solid #eeeeee;
+  margin-bottom: 40px;
+}
+
+.resume__optionLeft {
+  color: #313131;
+  margin-left: 100px;
+  margin-right: 100px;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  transform: translateY(-50px);
+}
+
+.resume__title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.resume__optionRight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  justify-self: left;
+}
+
+.resume__info > h1 {
+  font-size: 25px;
+  margin-bottom: 12px;
+}
+
+.resume__info > h4 {
+  color: #19181a;
+  font-style: italic;
+  font-weight: 400;
+  margin-top: 9px;
+  margin-bottom: 18px;
+}
+
+.resume__info > p {
+  color: #19181a;
+  font-size: 18px;
+  font-weight: 300;
+  margin-bottom: 30px;
+}
+
+.resume__title {
+  text-decoration: none;
+  position: relative;
+}
+
+.resume__title:after {
+  position: absolute;
+  content: "";
+  height: 2px;
+  bottom: -4px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  width: 50%;
+  background: #11abb0;
+
+  -o-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+.resume__title:hover:after {
+  width: 100%;
+}
+
+.resume__wrapper {
+  width: 100%;
+  display: flex;
+}
+
+.resume__infoSkills {
+  margin: 0 50px 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.resume__icon {
+  color: #7d7883;
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.resume__infoSkills > h1 {
+  font-size: 25px;
+  text-align: left;
+  font-weight: 700;
+}
+
+.resume__infoSkills > p {
+  color: #7d7883;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 700px) {
+  .resume__option {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+  }
+
+  .resume__wrapper {
+    margin-left: 30px;
+  }
+  .resume__infoSkills > h1 {
+    font-size: 20px;
+    text-align: center;
+  }
+  .education,
+  .work {
+    padding-left: 15px;
+  }
+  .skills {
+    padding-left: 5px;
+  }
+}
