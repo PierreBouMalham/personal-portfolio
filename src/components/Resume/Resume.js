@@ -13,7 +13,7 @@ const Resume = () => {
         </div>
         <div className="resume__optionRight work">
           <div className="resume__info">
-            <h1>CyberRATSS Ltd. (London, United Kingdom)</h1>
+            <h1>CyberRATSS Ltd. (Swindon, United Kingdom)</h1>
             <h4>Full Stack Developer (May 2022 – December 2022)</h4>
             <p>
               -Responsible for the implementation of responsive, mobile- first

@@ -5,7 +5,6 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { ImInstagram } from "react-icons/im";
 import { FaGithub } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
 import { animateScroll as scroll } from "react-scroll";
 
 const Footer = () => {
@@ -37,13 +36,7 @@ const Footer = () => {
         >
           <ImInstagram className="footer__icon" />
         </a>
-        <a
-          href="https://twitter.com/pierrboumalham"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <FaTwitter className="footer__icon" />
-        </a>
+
         <a
           href="https://github.com/PierreBouMalham"
           target="_blank"
