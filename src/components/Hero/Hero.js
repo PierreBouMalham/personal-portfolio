@@ -5,6 +5,7 @@ import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { ImInstagram } from "react-icons/im";
 import { FaGithub } from "react-icons/fa";
+import { FaTwitter } from "react-icons/fa";
 import { IoIosArrowDown } from "react-icons/io";
 import { Link } from "react-scroll";
 import Typewriter from "typewriter-effect";
@@ -55,6 +56,13 @@ const Hero = () => {
             rel="noreferrer"
           >
             <ImInstagram className="hero__icon" />
+          </a>
+          <a
+            href="https://twitter.com/pierrboumalham"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <FaTwitter className="hero__icon" />
           </a>
           <a
             href="https://github.com/PierreBouMalham"
