@@ -20,12 +20,12 @@ const Resume = () => {
               web pages.
             </p>
             <p>
-              -Assessing 3 UX and UI designs and making sure they are
+              -Assessing 4 UX and UI designs and making sure they are
               technically feasible.
             </p>
             <p>
               -Developed front-end and back-end code constantly for the past 8
-              months for 3 different modules in the company server/portfolio.
+              months for 4 different modules in the company server/portfolio.
             </p>
             <p>
               -Built projects through a combination of Angular, HTML, SCSS,
