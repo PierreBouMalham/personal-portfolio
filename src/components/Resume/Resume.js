@@ -14,7 +14,7 @@ const Resume = () => {
         <div className="resume__optionRight work">
           <div className="resume__info">
             <h1>CyberRATSS Ltd. (Swindon, United Kingdom)</h1>
-            <h4>Full Stack Developer (May 2022 – December 2022)</h4>
+            <h4>Full Stack Developer (May 2022 – January 2023)</h4>
             <p>
               -Responsible for the implementation of responsive, mobile- first
               web pages.
@@ -24,7 +24,7 @@ const Resume = () => {
               technically feasible.
             </p>
             <p>
-              -Developed front-end and back-end code constantly for the past 8
+              -Developed front-end and back-end code constantly for the past 9
               months for 4 different modules in the company server/portfolio.
             </p>
             <p>
@@ -36,16 +36,16 @@ const Resume = () => {
           </div>
           <div className="resume__info">
             <h1>Luxemburg-Slovenian Business Club (Ljubljana, Slovenia)</h1>
-            <h4>Web Developer (May 2022 – December 2022)</h4>
+            <h4>Web Developer (May 2022 – January 2023)</h4>
             <p>
               -Designed the test task required for a web developer intern
               position which covers company tech stack and contains 25 specific
               questions.
             </p>
-            <p>-Mentored 3 Web Developer Interns in the period of 8 months.</p>
+            <p>-Mentored 3 Web Developer Interns in the period of 9 months.</p>
             <p>
               -In Charge of onboarding the new web developer interns through
-              regular coaching. Successfully onboarded 3 during 8 months.
+              regular coaching. Successfully onboarded 3 during 9 months.
             </p>
             <p>
               -Conducted Technical Interviews for the selection of new web
