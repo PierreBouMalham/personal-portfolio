@@ -16,39 +16,42 @@ const Resume = () => {
             <h1>CyberRATSS Ltd. (Swindon, United Kingdom)</h1>
             <h4>Full Stack Developer (May 2022 – January 2023)</h4>
             <p>
-              -Responsible for the implementation of responsive, mobile- first
+              ● Responsible for the implementation of responsive, mobile- first
               web pages.
             </p>
             <p>
-              -Assessing 4 UX and UI designs and making sure they are
+              ● Assessing 4 UX and UI designs and making sure they are
               technically feasible.
             </p>
             <p>
-              -Developed front-end and back-end code constantly for the past 9
+              ● Engineered the curriculum vitae into a modular form technology
+              that allows non bias way of viewing CVs
+            </p>
+            <p>
+              ● Developed front-end and back-end code constantly for the past 9
               months for 4 different modules in the company server/portfolio.
             </p>
             <p>
-              -Built projects through a combination of Angular, HTML, SCSS,
+              ● Built projects through a combination of Angular, HTML, SCSS,
               JavaScript/TypeScript for front-end, and Python, Django and
               PostgreSQL for backend, all are coordinated with Microsoft Azure.
             </p>
-            <p>-Debug issues on a weekly basis while maintaining the code.</p>
           </div>
           <div className="resume__info">
             <h1>Luxemburg-Slovenian Business Club (Ljubljana, Slovenia)</h1>
             <h4>Web Developer (May 2022 – January 2023)</h4>
             <p>
-              -Designed the test task required for a web developer intern
+              ● Designed the test task required for a web developer intern
               position which covers company tech stack and contains 25 specific
               questions.
             </p>
-            <p>-Mentored 3 Web Developer Interns in the period of 9 months.</p>
+            <p>● Mentored 3 Web Developer Interns in the period of 9 months.</p>
             <p>
-              -In Charge of onboarding the new web developer interns through
+              ● In Charge of onboarding the new web developer interns through
               regular coaching. Successfully onboarded 3 during 9 months.
             </p>
             <p>
-              -Conducted Technical Interviews for the selection of new web
+              ● Conducted Technical Interviews for the selection of new web
               developer Interns.
             </p>
             <div className="resume__info">
@@ -57,22 +60,22 @@ const Resume = () => {
                 Electronics and Communication Engineer (January 2019 – May 2022)
               </h4>
               <p>
-                -Led a team of 5 at BMB Electrics, accelerating the delivery
+                ● Led a team of 5 at BMB Electrics, accelerating the delivery
                 time by 15%.
               </p>
               <p>
-                -Built strong relationships with clients, securing maintenance
+                ● Built strong relationships with clients, securing maintenance
                 contracts with more than 20 companies.
               </p>
               <p>
-                -Liaised with big suppliers, reducing monthly costs by 2000$.
+                ● Liaised with big suppliers, reducing monthly costs by 2000$.
               </p>
               <p>
-                -Identified the potential within the territory and determined
+                ● Identified the potential within the territory and determined
                 new opportunities for growth.
               </p>
               <p>
-                -Engaged in business development to significantly increase
+                ● Engaged in business development to significantly increase
                 revenue by 30% within assigned territory.
               </p>
             </div>

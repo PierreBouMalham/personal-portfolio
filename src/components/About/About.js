@@ -18,10 +18,10 @@ const About = () => {
             years experience working as a Electronics and Communication
             Engineer, 1 year working remotely with a UK based company as a
             Full-Stack Developer and 1 year working with a Slovenian based
-            company as a Web Developer. I am a passionate about coding and full
-            stack development. Certified and experienced Angular, React.js,
-            Python and Django Developer. Curious lifelong learner that loves the
-            work and has an appetite for challenging problems.
+            company as a Web Developer. I am a passionate about coding and web
+            development. Certified and experienced Angular, React.js, Python and
+            Django Developer. Curious lifelong learner that loves the work and
+            has an appetite for challenging problems.
           </p>
         </div>
 
@@ -36,7 +36,7 @@ const About = () => {
 
           <div className="about__resume">
             <a
-              href="https://drive.google.com/file/d/1tjv4ABfUMrrzin8LqP3lmAa6v9mHm9AH/view?usp=sharing"
+              href="https://drive.google.com/file/d/1ijbCVdNeqmZtAPVte7X1oetFe0nyVEjz/view?usp=sharing"
               target="_blank"
               rel="noreferrer"
             >
