@@ -1,6 +1,6 @@
 import React from "react";
 import "./Hero.css";
-import HeroBg from "../../images/galaxy.jpg";
+import HeroBg from "../../images/universe.jpg";
 import { FaFacebookF } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 import { ImInstagram } from "react-icons/im";
@@ -29,7 +29,7 @@ const Hero = () => {
             }}
           />
         </h1>
-        <p>
+        <p style={{ color: "white", fontWeight: "550" }}>
           Experienced developer that's looking to make an impact
           <br></br>
           Based in Lebanon, Beirut.

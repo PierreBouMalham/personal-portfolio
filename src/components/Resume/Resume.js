@@ -13,75 +13,112 @@ const Resume = () => {
         </div>
         <div className="resume__optionRight work">
           <div className="resume__info">
-            <h1>CyberRATSS Ltd. (Swindon, United Kingdom)</h1>
-            <h4>Full Stack Developer (May 2022 – January 2023)</h4>
+            <h1>Decentra Tech SAL (Beirut, Lebanon)</h1>
+            <h4>FrontEnd Developer (February 2023 - Present)</h4>
             <p>
-              ● Responsible for the implementation of responsive, mobile- first
-              web pages.
+              ● Worked on mapping technologies and live tracking systems using
+              Leaflet library.
             </p>
             <p>
-              ● Assessing 4 UX and UI designs and making sure they are
-              technically feasible.
+              ● Optimized code in 6 different components, resulting in a
+              reduction of a 984-line HTML file to only 25 lines.
             </p>
             <p>
-              ● Engineered the curriculum vitae into a modular form technology
-              that allows non bias way of viewing CVs
+              ● Implemented access rights and user permission security features
+              on 720 buttons across all modules, improving overall system
+              security and usability.
             </p>
             <p>
-              ● Developed front-end and back-end code constantly for the past 9
-              months for 4 different modules in the company server/portfolio.
+              ● Successfully completed over 20 Angular tasks, delivering
+              high-quality results on time.
             </p>
             <p>
-              ● Built projects through a combination of Angular, HTML, SCSS,
-              JavaScript/TypeScript for front-end, and Python, Django and
-              PostgreSQL for backend, all are coordinated with Microsoft Azure.
-            </p>
-          </div>
-          <div className="resume__info">
-            <h1>Luxemburg-Slovenian Business Club (Ljubljana, Slovenia)</h1>
-            <h4>Web Developer (May 2022 – January 2023)</h4>
-            <p>
-              ● Designed the test task required for a web developer intern
-              position which covers company tech stack and contains 25 specific
-              questions.
-            </p>
-            <p>● Mentored 3 Web Developer Interns in the period of 9 months.</p>
-            <p>
-              ● In Charge of onboarding the new web developer interns through
-              regular coaching. Successfully onboarded 3 during 9 months.
-            </p>
-            <p>
-              ● Conducted Technical Interviews for the selection of new web
-              developer Interns.
+              ● Produced clear and concise documentation for 10+ HTML and
+              TypeScript files to improve maintainability and support future
+              development efforts.
             </p>
             <div className="resume__info">
-              <h1>BMB Electrics (Beirut, Lebanon)</h1>
-              <h4>
-                Electronics and Communication Engineer (January 2019 – May 2022)
-              </h4>
+              <h1>CyberRATSS Ltd. (Swindon, United Kingdom)</h1>
+              <h4>Full Stack Developer (May 2022 – February 2023)</h4>
               <p>
-                ● Led a team of 5 at BMB Electrics, accelerating the delivery
-                time by 15%.
+                ● Worked in a team of diverse multicultural software programmers
+                in an agile environment to enable inputs and ideas from all
+                aspects of creative thinking towards an all-inclusive
+                environment.
               </p>
               <p>
-                ● Built strong relationships with clients, securing maintenance
-                contracts with more than 20 companies.
+                ● Engineered the Curriculum Vitae into a modular form technology
+                to generate a uniformity and non-bias way of seeing CV data on
+                mass.
               </p>
               <p>
-                ● Liaised with big suppliers, reducing monthly costs by 2000$.
+                ● Software development of the UK Human Resources form
+                applications into a dynamic modular arrangement to simplify
+                application completion of data and linking to a visual mapping
+                representation of information.
               </p>
               <p>
-                ● Identified the potential within the territory and determined
-                new opportunities for growth.
+                ● Developed front-end and back-end code constantly for the past
+                10 months for 5 different modules in the company
+                server/portfolio.
               </p>
               <p>
-                ● Engaged in business development to significantly increase
-                revenue by 30% within assigned territory.
+                ● Built projects through a combination of Angular, HTML, SCSS,
+                JavaScript/TypeScript for front-end, and Python, Django and
+                PostgreSQL for backend, all are coordinated with Microsoft
+                Azure.
               </p>
+            </div>
+            <div className="resume__info">
+              <h1>Luxemburg-Slovenian Business Club (Ljubljana, Slovenia)</h1>
+              <h4>Web Developer (May 2022 – February 2023)</h4>
+              <p>
+                ● Designed the test task required for a web developer intern
+                position which covers company tech stack and contains 25
+                specific questions.
+              </p>
+              <p>
+                ● Mentored 3 Web Developer Interns in the period of 10 months.
+              </p>
+              <p>
+                ● In Charge of onboarding the new web developer interns through
+                regular coaching. Successfully onboarded 3 during 10 months.
+              </p>
+              <p>
+                ● Conducted Technical Interviews for the selection of new web
+                developer Interns.
+              </p>
+              <div className="resume__info">
+                <h1>BMB Electrics (Beirut, Lebanon)</h1>
+                <h4>
+                  Electronics and Communication Engineer (January 2019 – May
+                  2022)
+                </h4>
+                <p>
+                  ● Led a team of 5 at BMB Electrics, accelerating the delivery
+                  time by 15%.
+                </p>
+                <p>
+                  ● Built strong relationships with clients, securing
+                  maintenance contracts with more than 20 companies.
+                </p>
+                <p>
+                  ● Liaised with big suppliers, reducing monthly costs by 2000$.
+                </p>
+                <p>
+                  ● Identified the potential within the territory and determined
+                  new opportunities for growth.
+                </p>
+                <p>
+                  ● Engaged in business development to significantly increase
+                  revenue by 30% within assigned territory.
+                </p>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
       <div className="resume__option">
         <div className="resume__optionLeft">
           <h1 className="resume__title education">Education</h1>

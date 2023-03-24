@@ -19,7 +19,6 @@
 .resume__optionLeft {
   color: #313131;
   margin-left: 100px;
-  margin-right: 100px;
   font-size: 18px;
   font-weight: 700;
   display: flex;
@@ -38,6 +37,7 @@
   align-items: center;
   text-align: left;
   justify-self: left;
+  margin-right: 10%;
 }
 
 .resume__info > h1 {
@@ -125,7 +125,7 @@
   }
 
   .resume__wrapper {
-    margin-left: 30px;
+    max-width: fit-content;
   }
   .resume__infoSkills > h1 {
     font-size: 20px;
