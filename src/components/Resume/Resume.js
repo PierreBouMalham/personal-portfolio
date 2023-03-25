@@ -29,11 +29,11 @@ const Resume = () => {
               security and usability.
             </p>
             <p>
-              ● Successfully completed over 20 Angular tasks, delivering
+              ● Successfully completed over 30 Angular tasks, delivering
               high-quality results on time.
             </p>
             <p>
-              ● Produced clear and concise documentation for 10+ HTML and
+              ● Produced clear and concise documentation for 20+ HTML and
               TypeScript files to improve maintainability and support future
               development efforts.
             </p>
@@ -52,10 +52,9 @@ const Resume = () => {
                 mass.
               </p>
               <p>
-                ● Software development of the UK Human Resources form
-                applications into a dynamic modular arrangement to simplify
-                application completion of data and linking to a visual mapping
-                representation of information.
+                ● Simplified the application completion process for the UK Human
+                Resources form applications by developing a dynamic modular
+                arrangement and visual mapping representation of information.
               </p>
               <p>
                 ● Developed front-end and back-end code constantly for the past
@@ -128,7 +127,7 @@ const Resume = () => {
           <div className="resume__info">
             <h1>LU - Faculty of Engineer - Branch II</h1>
             <h4>Bachelor of Electronics and Communication Engineering</h4>
-            <p>July 2019 - July 2022</p>
+            <p>September 2019 - July 2022</p>
           </div>
         </div>
       </div>
