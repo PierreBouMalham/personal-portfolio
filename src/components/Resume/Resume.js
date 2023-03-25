@@ -163,7 +163,7 @@ const Resume = () => {
                 <p>NPM</p>
                 <p>PostgreSQL</p>
                 <p>MongoDB</p>
-                <p>Google Firebase</p>
+                <p>Firebase</p>
                 <p>Django</p>
                 <p>Rest API</p>
               </div>
@@ -171,14 +171,14 @@ const Resume = () => {
               <div className="resume__infoSkills">
                 <GoStar className="resume__icon" />
                 <h1>Others</h1>
-                <p>Azure DevOps</p>
+                <p>Azure</p>
+                <p>DevOps</p>
                 <p>GitHub</p>
                 <p>Redux</p>
                 <p>GraphQL</p>
                 <p>.NET</p>
                 <p>C++</p>
-                <p>Travis-CI</p>
-                <p>VS Code</p>
+                <p>C#</p>
               </div>
             </div>
           </div>
