@@ -16,30 +16,29 @@ const Resume = () => {
             <h1>Decentra Tech SAL (Beirut, Lebanon)</h1>
             <h4>FrontEnd Developer (February 2023 - Present)</h4>
             <p>
-              ● Worked on mapping technologies and live tracking systems using
-              Leaflet library.
+              ● Enhanced the performance and security of a fleet management
+              system which led to a new partnership with distribution companies
+              in UAE, reducing their monthly costs by over 50,000$.
             </p>
             <p>
-              ● Optimized code in 6 different components, resulting in a
-              reduction of a 984-line HTML file to only 25 lines.
+              ● Accelerated the speed of the company's system by up to 2 times
+              through the integration of NgRx store technology, which
+              efficiently loads and stores critical information on login.
             </p>
             <p>
-              ● Implemented access rights and user permission security features
-              on 720 buttons across all modules, improving overall system
-              security and usability.
+              ● Implemented access rights and user permission features on 720
+              buttons across all modules, improving overall system security and
+              usability.
             </p>
             <p>
-              ● Successfully completed over 30 Angular tasks, delivering
-              high-quality results on time.
-            </p>
-            <p>
-              ● Produced clear and concise documentation for 20+ HTML and
-              TypeScript files to improve maintainability and support future
-              development efforts.
+              ● Optimized code in 10+ components, reducing a 984-line HTML file
+              to only 25 lines. This resulted in significant improvements to
+              code reusability and maintainability, making future development
+              efforts more efficient and effective.
             </p>
             <div className="resume__info">
               <h1>CyberRATSS Ltd. (Swindon, United Kingdom)</h1>
-              <h4>Full Stack Developer (May 2022 – February 2023)</h4>
+              <h4>Full Stack Developer (May 2022 - February 2023)</h4>
               <p>
                 ● Worked in a team of diverse multicultural software programmers
                 in an agile environment to enable inputs and ideas from all
@@ -47,9 +46,9 @@ const Resume = () => {
                 environment.
               </p>
               <p>
-                ● Engineered the Curriculum Vitae into a modular form technology
-                to generate a uniformity and non-bias way of seeing CV data on
-                mass.
+                ● Engineered a modular form technology to standardize the
+                Curriculum Vitae format, promoting data uniformity and
+                eliminating bias in CV interpretation at scale.
               </p>
               <p>
                 ● Simplified the application completion process for the UK Human
@@ -70,7 +69,7 @@ const Resume = () => {
             </div>
             <div className="resume__info">
               <h1>Luxemburg-Slovenian Business Club (Ljubljana, Slovenia)</h1>
-              <h4>Web Developer (May 2022 – February 2023)</h4>
+              <h4>Web Developer (May 2022 - February 2023)</h4>
               <p>
                 ● Designed the test task required for a web developer intern
                 position which covers company tech stack and contains 25

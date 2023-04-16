@@ -36,7 +36,7 @@ const About = () => {
 
           <div className="about__resume">
             <a
-              href="https://drive.google.com/file/d/1n2cxNkMzNZYvo-618UA7E3hbN9rzNhjt/view?usp=sharing"
+              href="https://drive.google.com/file/d/14TpvOZf5bv-ASs7bNPk5a_JL7HvJV4Mk/view?usp=sharing"
               target="_blank"
               rel="noreferrer"
             >
