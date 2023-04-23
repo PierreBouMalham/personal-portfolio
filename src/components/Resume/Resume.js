@@ -69,7 +69,7 @@ const Resume = () => {
             </div>
             <div className="resume__info">
               <h1>Luxemburg-Slovenian Business Club (Ljubljana, Slovenia)</h1>
-              <h4>Web Developer (May 2022 - February 2023)</h4>
+              <h4>Web Developer (Aug 2021 - May 2022)</h4>
               <p>
                 ● Designed the test task required for a web developer intern
                 position which covers company tech stack and contains 25
@@ -89,8 +89,8 @@ const Resume = () => {
               <div className="resume__info">
                 <h1>BMB Electrics (Beirut, Lebanon)</h1>
                 <h4>
-                  Electronics and Communication Engineer (January 2019 – May
-                  2022)
+                  Electronics and Communication Engineer (January 2019 – Aug
+                  2021)
                 </h4>
                 <p>
                   ● Led a team of 5 at BMB Electrics, accelerating the delivery
