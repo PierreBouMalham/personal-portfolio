@@ -14,36 +14,33 @@ const Resume = () => {
         <div className="resume__optionRight work">
           <div className="resume__info">
             <h1>Decentra Tech SAL (Beirut, Lebanon)</h1>
-            <h4>FrontEnd Developer (February 2023 - Present)</h4>
+            <h4>Full Stack Developer (February 2023 - Present)</h4>
             <p>
               ● Enhanced the performance and security of a fleet management
               system which led to a new partnership with distribution companies
-              in UAE, reducing their monthly costs by over 50,000$.
+              in UAE
             </p>
             <p>
-              ● Accelerated the speed of the company's system by up to 2 times
-              through the integration of NgRx store technology, which
-              efficiently loads and stores critical information on login.
+              ● Streamlined and unified codebase, resolving inconsistencies in
+              naming conventions between frontend and backend. Which improved
+              code clarity and enhanced project organization.
             </p>
             <p>
               ● Implemented access rights and user permission features on 720
-              buttons across all modules, improving overall system security and
-              usability.
+              buttons across all modules, securing the company's system
             </p>
             <p>
-              ● Optimized code in 10+ components, reducing a 984-line HTML file
-              to only 25 lines. This resulted in significant improvements to
-              code reusability and maintainability, making future development
-              efforts more efficient and effective.
+              ● Reconstructed 4 old modules from scratch with clear and concise
+              documentation, to improve maintainability and support future
+              development efforts.
             </p>
             <div className="resume__info">
               <h1>CyberRATSS Ltd. (Swindon, United Kingdom)</h1>
               <h4>Full Stack Developer (May 2022 - February 2023)</h4>
               <p>
-                ● Worked in a team of diverse multicultural software programmers
-                in an agile environment to enable inputs and ideas from all
-                aspects of creative thinking towards an all-inclusive
-                environment.
+                ● Simplified the application completion process for the UK Human
+                Resources form applications by developing a dynamic modular
+                arrangement and visual mapping representation of information.
               </p>
               <p>
                 ● Engineered a modular form technology to standardize the
@@ -51,14 +48,8 @@ const Resume = () => {
                 eliminating bias in CV interpretation at scale.
               </p>
               <p>
-                ● Simplified the application completion process for the UK Human
-                Resources form applications by developing a dynamic modular
-                arrangement and visual mapping representation of information.
-              </p>
-              <p>
-                ● Developed front-end and back-end code constantly for the past
-                10 months for 5 different modules in the company
-                server/portfolio.
+                ● Developed high quality front-end and back-end code constantly
+                for 5 different modules in the company server/portfolio.
               </p>
               <p>
                 ● Built projects through a combination of Angular, HTML, SCSS,

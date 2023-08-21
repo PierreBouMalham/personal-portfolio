@@ -14,14 +14,12 @@ const About = () => {
         <div className="about__paragraph">
           <h1>About Me</h1>
           <p>
-            Hi There ! I am a Meta Certified Front-End Developer. I've got 3
-            years experience working as a Electronics and Communication
-            Engineer, 1 year working remotely with a UK based company as a
-            Full-Stack Developer and 1 year working with a Slovenian based
-            company as a Web Developer. I am a passionate about coding and web
-            development. Certified and experienced Angular, React.js, Python and
-            Django Developer. Curious lifelong learner that loves the work and
-            has an appetite for challenging problems.
+            Hi There ! I am a Meta Certified Developer. I've got 3 years of
+            professional experience in Full Stack Developement, I am a
+            passionate about coding and web development. Certified and
+            experienced Angular, React.js, Python and Django Developer. Curious
+            lifelong learner that loves the work and has an appetite for
+            challenging problems.
           </p>
         </div>
 
@@ -29,14 +27,14 @@ const About = () => {
           <div className="about__details">
             <h1>Contact Details</h1>
             <p>Pierre Bou-Malham</p>
-            <p>Chiah, Beirut</p>
+            <p>Chiyah, Beirut</p>
             <p>+961 71 637 891</p>
             <p>pierreboumalham3@gmail.com</p>
           </div>
 
           <div className="about__resume">
             <a
-              href="https://drive.google.com/file/d/1YpMykNd28CxktrE82A26s4H5RPPigYJ2/view?usp=sharing"
+              href="https://drive.google.com/file/d/1Fbzg2mBwiU0YIxSLRbe_l4-vbVpWBypa/view?usp=sharing"
               target="_blank"
               rel="noreferrer"
             >
