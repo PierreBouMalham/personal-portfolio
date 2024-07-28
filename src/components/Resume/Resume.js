@@ -18,26 +18,26 @@ const Resume = () => {
             <p>
               ● Enhanced the performance and security of a fleet management
               system which led to a new partnership with distribution companies
-              in Lebanon and UAE
+              in Lebanon, UAE, Saudi Arabia and Africa.
             </p>
             <p>
-              ● Developed 3 user-friendly and responsive modules from scratch
+              ● Developed 5 user-friendly and responsive modules from scratch
               writing high quality code in front-end using Angular framework and
               back-end using Java Spring Boot
-            </p>
-            <p>
-              ● Streamlined and unified codebase, resolving inconsistencies in
-              naming conventions between frontend and backend. Which improved
-              code clarity and enhanced project organization.
             </p>
             <p>
               ● Implemented access rights and user permission features on 720
               buttons across all modules, securing the company's system
             </p>
             <p>
-              ● Reconstructed 4 old modules from scratch with clear and concise
-              documentation, to improve maintainability and support future
-              development efforts.
+              ● Reconstructed 4 old modules with clear and concise
+              documentation, to improve performance, maintainability and support
+              future development efforts.
+            </p>
+            <p>
+              ● Streamlined and unified codebase, resolving inconsistencies in
+              naming conventions between frontend and backend. Which improved
+              code clarity and enhanced project organization.
             </p>
             <div className="resume__info">
               <h1>CyberRATSS Ltd. (Swindon, United Kingdom)</h1>
