@@ -17,8 +17,8 @@ const About = () => {
             Hi There ! I am a Meta Certified Developer. I've got 3 years of
             professional experience in Full Stack Developement, I am a
             passionate about coding and web development. Certified and
-            experienced Angular, React.js, Python and Django Developer. Curious
-            lifelong learner that loves the work and has an appetite for
+            experienced Angular, React.js, Java, Python and Django Developer.
+            Curious lifelong learner that loves the work and has an appetite for
             challenging problems.
           </p>
         </div>
