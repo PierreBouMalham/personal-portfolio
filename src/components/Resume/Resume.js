@@ -17,8 +17,8 @@ const Resume = () => {
             <h4>Full Stack Developer (February 2023 - Present)</h4>
             <p>
               ● Enhanced the performance and security of a fleet management
-              system which led to a new partnership with distribution companies
-              in Lebanon, UAE, Saudi Arabia and Africa.
+              system which led to a new partnership with companies in Lebanon,
+              UAE, Saudi Arabia and Africa.
             </p>
             <p>
               ● Developed 5 user-friendly and responsive modules from scratch
@@ -48,7 +48,7 @@ const Resume = () => {
                 arrangement and visual mapping representation of information.
               </p>
               <p>
-                ● Engineered a modular form technology to standardize the
+                ● Developed a modular form technology to standardize the
                 Curriculum Vitae format, promoting data uniformity and
                 eliminating bias in CV interpretation at scale.
               </p>
@@ -82,32 +82,6 @@ const Resume = () => {
                 ● Conducted Technical Interviews for the selection of new web
                 developer Interns.
               </p>
-              <div className="resume__info">
-                <h1>BMB Electrics (Beirut, Lebanon)</h1>
-                <h4>
-                  Electronics and Communication Engineer (January 2019 – May
-                  2022)
-                </h4>
-                <p>
-                  ● Led a team of 5 at BMB Electrics, accelerating the delivery
-                  time by 15%.
-                </p>
-                <p>
-                  ● Built strong relationships with clients, securing
-                  maintenance contracts with more than 20 companies.
-                </p>
-                <p>
-                  ● Liaised with big suppliers, reducing monthly costs by 2000$.
-                </p>
-                <p>
-                  ● Identified the potential within the territory and determined
-                  new opportunities for growth.
-                </p>
-                <p>
-                  ● Engaged in business development to significantly increase
-                  revenue by 30% within assigned territory.
-                </p>
-              </div>
             </div>
           </div>
         </div>
@@ -141,26 +115,17 @@ const Resume = () => {
                 <p>Angular</p>
                 <p>ReactJS</p>
                 <p>Vue.js</p>
-                <p>HTML5</p>
-                <p>CSS3</p>
-                <p>SCSS</p>
                 <p>JavaScript</p>
-                <p>TypeScript</p>
-                <p>Bootstrap</p>
               </div>
 
               <div className="resume__infoSkills">
                 <FaDatabase className="resume__icon" />
                 <h1>Backend</h1>
-                <p>Spring Boot</p>
+                <p>Java</p>
                 <p>Python</p>
                 <p>NodeJS</p>
-                <p>NPM</p>
-                <p>PostgreSQL</p>
-                <p>MongoDB</p>
-                <p>Firebase</p>
                 <p>Django</p>
-                <p>Rest API</p>
+                <p>Laravel</p>
               </div>
 
               <div className="resume__infoSkills">
