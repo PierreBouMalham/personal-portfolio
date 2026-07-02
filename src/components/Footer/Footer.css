@@ -1,71 +1,76 @@
 .footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  height: 200px;
-  background-color: #0f0f0f;
-  overflow-x: visible !important;
+  border-top: 1px solid var(--border);
+  padding: 36px 0;
+  background: var(--bg-elevated);
 }
 
-.footer__arrow {
+.footer__inner {
   display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: #525252;
-  color: #ffffff;
-  height: 60px;
-  width: 60px;
-  border-radius: 50%;
-  font-size: 40px;
-  transform: translateY(-100%);
-  cursor: pointer;
-}
-
-.footer__arrow:hover {
-  background-color: #11abb0;
-  transition: 0.3s ease-in;
-}
-
-.footer__media {
-  width: 20%;
-  display: flex;
   justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer__left {
+  display: flex;
   align-items: center;
-  transform: translateY(-80%);
-  overflow-x: visible !important;
+  gap: 20px;
 }
 
-.footer__media > a {
-  text-decoration: none;
-  color: #ffffff;
-  overflow-x: visible !important;
+.footer__logo {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
 }
 
-.footer__icon {
-  color: #525252;
-  font-size: 40px;
-  transition: 0.3s ease-in;
+.footer__logo span {
+  color: var(--accent-bright);
 }
 
-.footer__icon:hover {
-  cursor: pointer;
-  color: #11abb0;
-  transition: 0.3s ease-in;
+.footer__copy {
+  color: var(--text-tertiary);
+  font-size: 13.5px;
 }
 
-small {
-  color: #343434;
+.footer__right {
+  display: flex;
+  gap: 10px;
 }
 
-.footer__name {
-  color: #4f4d4c;
+.footer__right a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  font-size: 18px;
+  transition: color 0.2s, border-color 0.2s, transform 0.2s var(--ease-out-expo);
 }
 
-@media screen and (max-width: 750px) {
-  .footer__media {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.footer__right a:hover {
+  color: var(--accent-bright);
+  border-color: rgba(96, 165, 250, 0.45);
+  transform: translateY(-3px);
+}
+
+.footer__top {
+  background: rgba(59, 130, 246, 0.1) !important;
+  border-color: rgba(59, 130, 246, 0.3) !important;
+  color: var(--accent-bright) !important;
+}
+
+@media (max-width: 640px) {
+  .footer__inner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer__left {
+    flex-direction: column;
+    gap: 8px;
   }
 }
