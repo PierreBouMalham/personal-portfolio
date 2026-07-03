@@ -2,8 +2,8 @@
    Design tokens — cinematic dark, monochrome + electric blue
    ============================================================ */
 :root {
-  /* Surfaces (avoid pure #000 — OLED smear) */
-  --bg: #09090d;
+  /* Surfaces — pure-black stage behind the prism-streaks scene */
+  --bg: #000000;
   --bg-elevated: #0e0e15;
   --surface: rgba(255, 255, 255, 0.035);
   --surface-hover: rgba(255, 255, 255, 0.06);
@@ -15,12 +15,23 @@
   --text-secondary: #a2a2ad;
   --text-tertiary: #6e6e7a;
 
-  /* Accent */
-  --accent: #3b82f6;
-  --accent-bright: #60a5fa;
+  /* Accent — electric blue (Cortex palette) */
+  --accent: #0039ff;
+  --accent-bright: #5c7cff;
   --accent-violet: #8b5cf6;
-  --accent-glow: rgba(59, 130, 246, 0.35);
-  --gradient-accent: linear-gradient(135deg, #60a5fa 0%, #818cf8 50%, #a78bfa 100%);
+  --accent-glow: rgba(0, 57, 255, 0.4);
+  --gradient-accent: linear-gradient(135deg, #8fa4ff 0%, #3d63ff 50%, #0039ff 100%);
+
+  /* Cortex hero tokens */
+  --brand: #0039ff;
+  --hero-ink: #ffffff;
+  --hero-bg: #000000;
+  --hero-scrim-deep: #000830;
+  --hero-divider: rgba(255, 255, 255, 0.2);
+  --hero-wordmark-hi: #ffffff;
+  --hero-wordmark-lo: rgba(255, 225, 252, 0);
+  --hero-lead-fade: rgba(255, 255, 255, 0.5);
+  --preloader-bg: #ffffff;
 
   /* Type */
   --font-display: "Space Grotesk", "Inter", sans-serif;
@@ -277,4 +288,114 @@ footer {
   .section {
     padding: 80px 0;
   }
+}
+
+/* ============================================================
+   Cortex entrance system — elements hold their "hidden" state
+   until the preloader lifts and adds .is-play to <body>.
+   Per-element timing via --d (delay) and --dur (duration).
+   ============================================================ */
+.a {
+  transition-property: opacity, transform, filter, clip-path;
+  transition-duration: var(--dur, 700ms);
+  transition-delay: var(--d, 0ms);
+  transition-timing-function: var(--ease-out-expo);
+  will-change: opacity, transform, filter;
+}
+
+.a-nav {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.a-lead {
+  opacity: 0;
+  filter: blur(8px);
+  transform: translateY(10px);
+  clip-path: inset(-8% 0 100% 0);
+}
+
+.a-div {
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.a-sub {
+  opacity: 0;
+  filter: blur(6px);
+  clip-path: inset(0 100% 0 -4%);
+}
+
+.a-cta {
+  opacity: 0;
+  transform: translateY(16px) scale(0.985);
+}
+
+.a-letter {
+  opacity: 0;
+  transform: translateY(96px);
+  filter: blur(20px);
+}
+
+body.is-play .a-nav {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.is-play .a-lead {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+  clip-path: inset(-8% 0 -8% 0);
+}
+
+body.is-play .a-div {
+  transform: scaleX(1);
+}
+
+body.is-play .a-sub {
+  opacity: 1;
+  filter: blur(0);
+  clip-path: inset(0 -4% 0 -4%);
+}
+
+body.is-play .a-cta {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+body.is-play .a-letter {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .a {
+    transition-duration: 1ms !important;
+    transition-delay: 0ms !important;
+  }
+}
+
+/* gradient text lightened over the scene (hero lead paragraph) */
+.grad-lead {
+  mix-blend-mode: lighten;
+  background-image: linear-gradient(to right, var(--hero-ink), var(--hero-lead-fade));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+/* visually hidden, accessible to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
 }

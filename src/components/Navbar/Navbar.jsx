@@ -1,18 +1,35 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
-import { EASE } from "../../motion.js";
 import { profile } from "../../data/content.js";
-import Magnetic from "../shared/Magnetic.jsx";
 import "./Navbar.css";
 
-const links = [
+/* ============================================================
+   Cortex-style nav: 2×2 logo mark + name on the left with the
+   primary links, secondary links + "Get in touch" on the right.
+   Collapses to a hamburger + glass panel below 1024px.
+   Items enter from above once the preloader lifts (body.is-play).
+   ============================================================ */
+
+const PRIMARY = [
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
+];
+
+const SECONDARY = [
   { label: "Skills", href: "#skills" },
   { label: "Education", href: "#education" },
   { label: "Contact", href: "#contact" },
 ];
+
+function Logo() {
+  return (
+    <a href="#top" className="cnav__logo" aria-label="Back to top">
+      <span className="cnav__mark" aria-hidden="true">
+        <i /><i /><i /><i />
+      </span>
+      <span className="cnav__name">Pierre</span>
+    </a>
+  );
+}
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -26,69 +43,87 @@ export default function Navbar() {
   }, []);
 
   return (
-    <motion.header
-      className={`nav ${scrolled ? "nav--scrolled" : ""}`}
-      initial={{ y: -72, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: EASE }}
-    >
-      <nav className="nav__inner container" aria-label="Primary">
-        <a href="#top" className="nav__logo" aria-label="Back to top">
-          PB<span className="nav__logo-dot">.</span>
-        </a>
-
-        <ul className="nav__links">
-          {links.map((l) => (
-            <li key={l.href}>
-              <a href={l.href} className="nav__link">
+    <header className={`cnav ${scrolled ? "cnav--scrolled" : ""}`}>
+      {/* ---- desktop (≥1024px) ---- */}
+      <div className="cnav__desktop">
+        <div className="cnav__left">
+          <span className="a a-nav" style={{ "--dur": "700ms", "--d": "100ms" }}>
+            <Logo />
+          </span>
+          <nav aria-label="Primary" className="cnav__links">
+            {PRIMARY.map((l, i) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="cnav__link a a-nav"
+                style={{ "--dur": "700ms", "--d": `${180 + i * 80}ms` }}
+              >
                 {l.label}
               </a>
-            </li>
+            ))}
+          </nav>
+        </div>
+
+        <nav aria-label="Secondary" className="cnav__right">
+          {SECONDARY.map((l, i) => (
+            <a
+              key={l.href}
+              href={l.href}
+              className="cnav__link a a-nav"
+              style={{ "--dur": "700ms", "--d": `${180 + i * 60}ms` }}
+            >
+              {l.label}
+            </a>
           ))}
-        </ul>
-
-        <Magnetic className="nav__cv-wrap">
-          <a href={profile.cvUrl} download className="btn btn--ghost nav__cv">
-            Download CV
+          <a
+            href="#contact"
+            className="cnav__touch a a-nav"
+            style={{ "--dur": "700ms", "--d": "360ms" }}
+          >
+            Get in touch
           </a>
-        </Magnetic>
+        </nav>
+      </div>
 
+      {/* ---- mobile / tablet (<1024px) ---- */}
+      <div className="cnav__mobile">
+        <span className="a a-nav" style={{ "--dur": "700ms", "--d": "100ms" }}>
+          <Logo />
+        </span>
         <button
-          className="nav__burger"
+          className="cnav__burger a a-nav"
+          style={{ "--dur": "700ms", "--d": "180ms" }}
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
+          aria-controls="cnav-menu"
           onClick={() => setOpen(!open)}
         >
-          {open ? <HiOutlineX /> : <HiOutlineMenuAlt3 />}
+          <i /><i /><i />
         </button>
-      </nav>
+      </div>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            className="nav__mobile"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.35, ease: EASE }}
+      <nav
+        id="cnav-menu"
+        className={`cnav__menu ${open ? "cnav__menu--open" : ""}`}
+        aria-label="Menu"
+      >
+        {[...PRIMARY, ...SECONDARY].map((l) => (
+          <a
+            key={l.href}
+            href={l.href}
+            className="cnav__link"
+            onClick={() => setOpen(false)}
           >
-            <ul>
-              {links.map((l) => (
-                <li key={l.href}>
-                  <a href={l.href} onClick={() => setOpen(false)}>
-                    {l.label}
-                  </a>
-                </li>
-              ))}
-              <li>
-                <a href={profile.cvUrl} download onClick={() => setOpen(false)}>
-                  Download CV
-                </a>
-              </li>
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.header>
+            {l.label}
+          </a>
+        ))}
+        <a href={profile.cvUrl} download className="cnav__link" onClick={() => setOpen(false)}>
+          Download CV
+        </a>
+        <a href="#contact" className="cnav__touch" onClick={() => setOpen(false)}>
+          Get in touch
+        </a>
+      </nav>
+    </header>
   );
 }

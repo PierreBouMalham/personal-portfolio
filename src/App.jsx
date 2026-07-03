@@ -10,9 +10,10 @@ import Contact from "./components/Contact/Contact.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import Marquee from "./components/shared/Marquee.jsx";
 import ScrollProgress from "./components/shared/ScrollProgress.jsx";
+import Preloader from "./components/Preloader/Preloader.jsx";
 
-// Three.js scroll-driven background ships as its own chunk, loaded after first paint
-const Background3D = lazy(() => import("./components/shared/Background3D.jsx"));
+// Three.js prism-streaks background ships as its own chunk, loaded after first paint
+const PrismBackground = lazy(() => import("./components/shared/PrismBackground.jsx"));
 
 export default function App() {
   const [reduceMotion] = useState(
@@ -52,9 +53,10 @@ export default function App() {
 
   return (
     <>
+      <Preloader />
       {!reduceMotion && (
         <Suspense fallback={null}>
-          <Background3D />
+          <PrismBackground />
         </Suspense>
       )}
       <ScrollProgress />
