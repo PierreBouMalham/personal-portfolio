@@ -224,6 +224,20 @@ html.lenis {
   scroll-behavior: auto;
 }
 
+/* Fixed 3D background canvas — content layers above it */
+.bg3d {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+main,
+footer {
+  position: relative;
+  z-index: 1;
+}
+
 /* Scroll progress bar */
 .scroll-progress {
   position: fixed;

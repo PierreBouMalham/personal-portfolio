@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   motion,
   AnimatePresence,
@@ -14,26 +14,10 @@ import Magnetic from "../shared/Magnetic.jsx";
 import profilePic from "../../assets/profile.jpg";
 import "./Hero.css";
 
-// Three.js scene ships as its own chunk, loaded after first paint
-const HeroScene = lazy(() => import("./HeroScene.jsx"));
-
 export default function Hero() {
   const [roleIndex, setRoleIndex] = useState(0);
   const reduceMotion = useReducedMotion();
   const heroRef = useRef(null);
-  const mouseRef = useRef([0, 0]);
-
-  useEffect(() => {
-    if (reduceMotion) return;
-    const onPointerMove = (e) => {
-      mouseRef.current = [
-        (e.clientX / window.innerWidth) * 2 - 1,
-        -((e.clientY / window.innerHeight) * 2 - 1),
-      ];
-    };
-    window.addEventListener("pointermove", onPointerMove, { passive: true });
-    return () => window.removeEventListener("pointermove", onPointerMove);
-  }, [reduceMotion]);
 
   // Parallax: layers drift apart as the hero scrolls away
   const { scrollYProgress } = useScroll({
@@ -71,15 +55,6 @@ export default function Hero() {
         aria-hidden="true"
         style={{ opacity: gridOpacity }}
       />
-
-      {/* Real-time 3D: liquid-metal blob + particle field */}
-      {!reduceMotion && (
-        <div className="hero__scene" aria-hidden="true">
-          <Suspense fallback={null}>
-            <HeroScene mouse={mouseRef} />
-          </Suspense>
-        </div>
-      )}
 
       <div className="container hero__inner">
         <motion.div

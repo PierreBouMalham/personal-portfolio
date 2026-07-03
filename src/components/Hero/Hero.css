@@ -35,13 +35,6 @@
   pointer-events: none;
 }
 
-.hero__scene {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
-}
-
 .hero__inner {
   position: relative;
   z-index: 1;

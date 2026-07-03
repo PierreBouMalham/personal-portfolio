@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import Lenis from "lenis";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Hero from "./components/Hero/Hero.jsx";
@@ -11,7 +11,14 @@ import Footer from "./components/Footer/Footer.jsx";
 import Marquee from "./components/shared/Marquee.jsx";
 import ScrollProgress from "./components/shared/ScrollProgress.jsx";
 
+// Three.js scroll-driven background ships as its own chunk, loaded after first paint
+const Background3D = lazy(() => import("./components/shared/Background3D.jsx"));
+
 export default function App() {
+  const [reduceMotion] = useState(
+    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  );
+
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -45,6 +52,11 @@ export default function App() {
 
   return (
     <>
+      {!reduceMotion && (
+        <Suspense fallback={null}>
+          <Background3D />
+        </Suspense>
+      )}
       <ScrollProgress />
       <Navbar />
       <main id="main">
