@@ -557,14 +557,17 @@ export default function GalaxyBackground() {
     /* ---- scroll → normalized progress (whole page drives the dive) ---- */
     let scrollTarget = 0;
     let scrollCurrent = 0;
-    /* readability veil: clear over the hero, ~60% dark once content arrives */
+    /* readability veil: 35% dark over the hero (text sits on the bright
+       core there too), easing up to 60% once content sections arrive */
+    const VEIL_BASE = 0.35;
     const VEIL_MAX = 0.6;
-    let veilTarget = 0;
-    let veilCurrent = 0;
+    let veilTarget = VEIL_BASE;
+    let veilCurrent = VEIL_BASE;
     const updateScroll = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       scrollTarget = max > 0 ? clamp(window.scrollY / max, 0, 1) : 0;
-      veilTarget = clamp(window.scrollY / (window.innerHeight * 0.8), 0, 1) * VEIL_MAX;
+      const k = clamp(window.scrollY / (window.innerHeight * 0.8), 0, 1);
+      veilTarget = VEIL_BASE + (VEIL_MAX - VEIL_BASE) * k;
     };
     window.addEventListener("scroll", updateScroll, { passive: true });
     updateScroll();
@@ -681,7 +684,7 @@ export default function GalaxyBackground() {
           inset: 0,
           zIndex: 0,
           background: "#05030a",
-          opacity: 0,
+          opacity: 0.35,
           pointerEvents: "none",
         }}
       />
