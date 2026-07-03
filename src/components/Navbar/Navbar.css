@@ -109,8 +109,9 @@
 
 @media (max-width: 860px) {
   .nav__links,
-  .nav__cv {
-    display: none;
+  .nav__cv,
+  .nav__cv-wrap {
+    display: none !important;
   }
   .nav__burger {
     display: inline-flex;

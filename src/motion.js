@@ -18,3 +18,14 @@ export const stagger = (staggerChildren = 0.09, delayChildren = 0) => ({
 });
 
 export const viewportOnce = { once: true, margin: "-80px" };
+
+// Cards settle in with a slight zoom for extra depth
+export const cardReveal = {
+  hidden: { opacity: 0, y: 44, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.8, ease: EASE },
+  },
+};

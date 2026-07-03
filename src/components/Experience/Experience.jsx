@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { FiMapPin, FiCalendar } from "react-icons/fi";
 import { fadeUp, stagger, viewportOnce } from "../../motion.js";
 import { experience } from "../../data/content.js";
+import { MaskLine } from "../shared/Reveal.jsx";
 import "./Experience.css";
 
 export default function Experience() {
@@ -17,11 +18,12 @@ export default function Experience() {
           <motion.p className="section__eyebrow" variants={fadeUp}>
             experience
           </motion.p>
-          <motion.h2 className="section__title" variants={fadeUp}>
-            Four years, four countries,
-            <br />
-            <span className="gradient-text">production systems that ship.</span>
-          </motion.h2>
+          <h2 className="section__title">
+            <MaskLine>Four years, four countries,</MaskLine>
+            <MaskLine delay={0.12}>
+              <span className="gradient-text">production systems that ship.</span>
+            </MaskLine>
+          </h2>
           <motion.p className="section__subtitle" variants={fadeUp}>
             From telecom-scale visualization in Paris to real-time fleet
             platforms in Beirut — a track record of owning features end to end.

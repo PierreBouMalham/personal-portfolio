@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { FiAward, FiBookOpen, FiGlobe } from "react-icons/fi";
 import { fadeUp, stagger, viewportOnce } from "../../motion.js";
 import { education, certifications, languages } from "../../data/content.js";
+import { MaskLine } from "../shared/Reveal.jsx";
 import "./Education.css";
 
 export default function Education() {
@@ -17,9 +18,11 @@ export default function Education() {
           <motion.p className="section__eyebrow" variants={fadeUp}>
             education &amp; certifications
           </motion.p>
-          <motion.h2 className="section__title" variants={fadeUp}>
-            Always <span className="gradient-text">learning.</span>
-          </motion.h2>
+          <h2 className="section__title">
+            <MaskLine>
+              Always <span className="gradient-text">learning.</span>
+            </MaskLine>
+          </h2>
         </motion.div>
 
         <motion.div

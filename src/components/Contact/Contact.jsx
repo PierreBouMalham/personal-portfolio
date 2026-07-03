@@ -13,6 +13,7 @@ import {
 } from "react-icons/fi";
 import { fadeUp, stagger, viewportOnce } from "../../motion.js";
 import { profile } from "../../data/content.js";
+import { MaskLine } from "../shared/Reveal.jsx";
 import "./Contact.css";
 
 const EMAILJS_SERVICE = "service_4q31ace";
@@ -50,10 +51,12 @@ export default function Contact() {
           <motion.p className="section__eyebrow" variants={fadeUp}>
             contact
           </motion.p>
-          <motion.h2 className="section__title" variants={fadeUp}>
-            Let&apos;s build something{" "}
-            <span className="gradient-text">together.</span>
-          </motion.h2>
+          <h2 className="section__title">
+            <MaskLine>
+              Let&apos;s build something{" "}
+              <span className="gradient-text">together.</span>
+            </MaskLine>
+          </h2>
           <motion.p className="section__subtitle" variants={fadeUp}>
             Open to full-time roles, contract work and interesting projects.
             Drop a message — I usually reply within a day.

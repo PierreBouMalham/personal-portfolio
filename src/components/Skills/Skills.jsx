@@ -22,6 +22,7 @@ import { TbBrandCSharp, TbBrandReactNative } from "react-icons/tb";
 import { FiGitBranch, FiCode } from "react-icons/fi";
 import { fadeUp, stagger, viewportOnce } from "../../motion.js";
 import { skillGroups } from "../../data/content.js";
+import { MaskLine } from "../shared/Reveal.jsx";
 import "./Skills.css";
 
 const icons = {
@@ -60,9 +61,11 @@ export default function Skills() {
           <motion.p className="section__eyebrow" variants={fadeUp}>
             skills
           </motion.p>
-          <motion.h2 className="section__title" variants={fadeUp}>
-            A full-stack <span className="gradient-text">toolbox.</span>
-          </motion.h2>
+          <h2 className="section__title">
+            <MaskLine>
+              A full-stack <span className="gradient-text">toolbox.</span>
+            </MaskLine>
+          </h2>
           <motion.p className="section__subtitle" variants={fadeUp}>
             Frameworks and tools I use daily to take products from idea to
             production.

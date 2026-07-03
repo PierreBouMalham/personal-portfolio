@@ -1,8 +1,9 @@
 import { useCallback } from "react";
 import { motion } from "framer-motion";
 import { FiFolder, FiStar } from "react-icons/fi";
-import { fadeUp, stagger, viewportOnce } from "../../motion.js";
+import { fadeUp, stagger, viewportOnce, cardReveal } from "../../motion.js";
 import { projects } from "../../data/content.js";
+import { MaskLine } from "../shared/Reveal.jsx";
 import "./Projects.css";
 
 function ProjectCard({ project }) {
@@ -17,7 +18,7 @@ function ProjectCard({ project }) {
     <motion.article
       className={`project card ${project.featured ? "project--featured" : ""}`}
       style={{ "--project-accent": project.accent }}
-      variants={fadeUp}
+      variants={cardReveal}
       onMouseMove={onMouseMove}
       whileHover={{ y: -6 }}
       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
@@ -63,9 +64,11 @@ export default function Projects() {
           <motion.p className="section__eyebrow" variants={fadeUp}>
             projects
           </motion.p>
-          <motion.h2 className="section__title" variants={fadeUp}>
-            Things I&apos;ve <span className="gradient-text">built &amp; shipped.</span>
-          </motion.h2>
+          <h2 className="section__title">
+            <MaskLine>
+              Things I&apos;ve <span className="gradient-text">built &amp; shipped.</span>
+            </MaskLine>
+          </h2>
           <motion.p className="section__subtitle" variants={fadeUp}>
             Production systems serving real users — from an AI publishing
             platform generating revenue to nationwide telecom tooling.

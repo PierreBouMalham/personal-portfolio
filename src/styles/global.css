@@ -214,6 +214,42 @@ button {
   transform: translateY(-2px);
 }
 
+/* Lenis smooth scroll takes over native smoothing */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+html.lenis {
+  scroll-behavior: auto;
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-accent);
+  transform-origin: 0 50%;
+  z-index: calc(var(--z-nav) + 1);
+}
+
+/* Masked line reveal */
+.mask-line {
+  display: block;
+  overflow: hidden;
+  /* protect descenders (g, y, p) from being clipped at rest */
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
+}
+
+.mask-line__inner {
+  display: block;
+  will-change: transform;
+}
+
 /* Ambient background glow blobs */
 .glow {
   position: absolute;

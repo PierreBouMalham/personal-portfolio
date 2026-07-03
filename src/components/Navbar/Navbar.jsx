@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { HiOutlineMenuAlt3, HiOutlineX } from "react-icons/hi";
 import { EASE } from "../../motion.js";
 import { profile } from "../../data/content.js";
+import Magnetic from "../shared/Magnetic.jsx";
 import "./Navbar.css";
 
 const links = [
@@ -46,9 +47,11 @@ export default function Navbar() {
           ))}
         </ul>
 
-        <a href={profile.cvUrl} download className="btn btn--ghost nav__cv">
-          Download CV
-        </a>
+        <Magnetic className="nav__cv-wrap">
+          <a href={profile.cvUrl} download className="btn btn--ghost nav__cv">
+            Download CV
+          </a>
+        </Magnetic>
 
         <button
           className="nav__burger"
