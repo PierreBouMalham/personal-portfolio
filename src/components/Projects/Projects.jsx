@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { motion } from "framer-motion";
+import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
 import { FiFolder, FiStar } from "react-icons/fi";
 import { fadeUp, stagger, viewportOnce, cardReveal } from "../../motion.js";
 import { projects } from "../../data/content.js";
@@ -7,19 +7,45 @@ import { MaskLine } from "../shared/Reveal.jsx";
 import "./Projects.css";
 
 function ProjectCard({ project }) {
-  // Cursor spotlight: track pointer position as CSS vars on the card
-  const onMouseMove = useCallback((e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    e.currentTarget.style.setProperty("--mx", `${e.clientX - rect.left}px`);
-    e.currentTarget.style.setProperty("--my", `${e.clientY - rect.top}px`);
-  }, []);
+  const reduceMotion = useReducedMotion();
+  const rotateX = useMotionValue(0);
+  const rotateY = useMotionValue(0);
+  const springRotateX = useSpring(rotateX, { stiffness: 160, damping: 18 });
+  const springRotateY = useSpring(rotateY, { stiffness: 160, damping: 18 });
+
+  // Cursor spotlight + 3D tilt: track pointer position over the card
+  const onMouseMove = useCallback(
+    (e) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const px = (e.clientX - rect.left) / rect.width - 0.5;
+      const py = (e.clientY - rect.top) / rect.height - 0.5;
+      e.currentTarget.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+      e.currentTarget.style.setProperty("--my", `${e.clientY - rect.top}px`);
+      if (!reduceMotion) {
+        rotateX.set(-py * 7);
+        rotateY.set(px * 7);
+      }
+    },
+    [reduceMotion, rotateX, rotateY]
+  );
+
+  const onMouseLeave = useCallback(() => {
+    rotateX.set(0);
+    rotateY.set(0);
+  }, [rotateX, rotateY]);
 
   return (
     <motion.article
       className={`project card ${project.featured ? "project--featured" : ""}`}
-      style={{ "--project-accent": project.accent }}
+      style={{
+        "--project-accent": project.accent,
+        rotateX: springRotateX,
+        rotateY: springRotateY,
+        transformPerspective: 900,
+      }}
       variants={cardReveal}
       onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
       whileHover={{ y: -6 }}
       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
     >
