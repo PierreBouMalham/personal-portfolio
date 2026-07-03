@@ -363,9 +363,11 @@ function buildMotesGeometry() {
 
 export default function GalaxyBackground() {
   const canvasRef = useRef(null);
+  const veilRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
+    const veil = veilRef.current;
 
     /* ---- raw cursor in pixels ---- */
     const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
@@ -555,9 +557,14 @@ export default function GalaxyBackground() {
     /* ---- scroll → normalized progress (whole page drives the dive) ---- */
     let scrollTarget = 0;
     let scrollCurrent = 0;
+    /* readability veil: clear over the hero, ~60% dark once content arrives */
+    const VEIL_MAX = 0.6;
+    let veilTarget = 0;
+    let veilCurrent = 0;
     const updateScroll = () => {
       const max = document.documentElement.scrollHeight - window.innerHeight;
       scrollTarget = max > 0 ? clamp(window.scrollY / max, 0, 1) : 0;
+      veilTarget = clamp(window.scrollY / (window.innerHeight * 0.8), 0, 1) * VEIL_MAX;
     };
     window.addEventListener("scroll", updateScroll, { passive: true });
     updateScroll();
@@ -628,6 +635,8 @@ export default function GalaxyBackground() {
       common.iAnimate.value = tAnim * tAnim * (3 - 2 * tAnim);
 
       scrollCurrent = Lerp(scrollCurrent, scrollTarget, 0.08);
+      veilCurrent = Lerp(veilCurrent, veilTarget, 0.08);
+      veil.style.opacity = veilCurrent.toFixed(3);
       camera.position.z = baseCameraZ - scrollCurrent * CONFIG.scrollDiveZ;
       galaxyRender(scrollCurrent);
       finalPass.uniforms.iTime.value = now / 1000;
@@ -656,11 +665,26 @@ export default function GalaxyBackground() {
   }, []);
 
   return (
-    <canvas
-      ref={canvasRef}
-      className="bg3d"
-      aria-hidden="true"
-      style={{ width: "100vw", height: "100vh", display: "block" }}
-    />
+    <>
+      <canvas
+        ref={canvasRef}
+        className="bg3d"
+        aria-hidden="true"
+        style={{ width: "100vw", height: "100vh", display: "block" }}
+      />
+      {/* readability veil — dims the scene under content, stays clear at the hero */}
+      <div
+        ref={veilRef}
+        aria-hidden="true"
+        style={{
+          position: "fixed",
+          inset: 0,
+          zIndex: 0,
+          background: "#05030a",
+          opacity: 0,
+          pointerEvents: "none",
+        }}
+      />
+    </>
   );
 }

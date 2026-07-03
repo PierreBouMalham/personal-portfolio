@@ -5,8 +5,10 @@
   /* Surfaces (avoid pure #000 — OLED smear) */
   --bg: #09090d;
   --bg-elevated: #0e0e15;
-  --surface: rgba(255, 255, 255, 0.035);
-  --surface-hover: rgba(255, 255, 255, 0.06);
+  /* dark glass — over the bright galaxy core, white glass smears light
+     into the card; a dark tint keeps text readable at any scroll depth */
+  --surface: rgba(14, 9, 21, 0.68);
+  --surface-hover: rgba(24, 16, 35, 0.8);
   --border: rgba(255, 255, 255, 0.08);
   --border-strong: rgba(255, 255, 255, 0.14);
 
