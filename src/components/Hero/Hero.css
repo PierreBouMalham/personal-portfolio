@@ -108,6 +108,7 @@
 .hero__socials {
   display: flex;
   gap: 12px;
+  margin-bottom: 28px;
 }
 
 .hero__socials a {
