@@ -63,37 +63,38 @@ export default function Hero() {
           variants={stagger(0.12, 0.15)}
           initial="hidden"
           animate="visible"
-          style={{ y: contentY }}
         >
-          <motion.p className="hero__badge" variants={fadeUp}>
-            <span className="hero__badge-dot" />
-            {profile.tagline} · {profile.location}
-          </motion.p>
+          <motion.div className="hero__copy" style={{ y: contentY }}>
+            <motion.p className="hero__badge" variants={fadeUp}>
+              <span className="hero__badge-dot" />
+              {profile.tagline} · {profile.location}
+            </motion.p>
 
-          <h1 className="hero__title">
-            <MaskLine delay={0.25}>Hi, I&apos;m</MaskLine>
-            <MaskLine delay={0.38}>
-              <span className="gradient-text">Pierre Bou&#8209;Malham</span>
-            </MaskLine>
-          </h1>
+            <h1 className="hero__title">
+              <MaskLine delay={0.25}>Hi, I&apos;m</MaskLine>
+              <MaskLine delay={0.38}>
+                <span className="gradient-text">Pierre Bou&#8209;Malham</span>
+              </MaskLine>
+            </h1>
 
-          <motion.div className="hero__role" variants={fadeUp} aria-live="polite">
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={profile.roles[roleIndex]}
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -18 }}
-                transition={{ duration: 0.45, ease: EASE }}
-              >
-                {profile.roles[roleIndex]}
-              </motion.span>
-            </AnimatePresence>
+            <motion.div className="hero__role" variants={fadeUp} aria-live="polite">
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={profile.roles[roleIndex]}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -18 }}
+                  transition={{ duration: 0.45, ease: EASE }}
+                >
+                  {profile.roles[roleIndex]}
+                </motion.span>
+              </AnimatePresence>
+            </motion.div>
+
+            <motion.p className="hero__summary" variants={fadeUp}>
+              {profile.summary}
+            </motion.p>
           </motion.div>
-
-          <motion.p className="hero__summary" variants={fadeUp}>
-            {profile.summary}
-          </motion.p>
 
           <motion.div className="hero__actions" variants={fadeUp}>
             <Magnetic>
