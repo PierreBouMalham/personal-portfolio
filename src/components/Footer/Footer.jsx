@@ -1,4 +1,5 @@
-import { FiGithub, FiLinkedin, FiMail, FiArrowUp } from "react-icons/fi";
+import { FiMail, FiArrowUp } from "react-icons/fi";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { profile } from "../../data/content.js";
 import "./Footer.css";
 
@@ -18,10 +19,10 @@ export default function Footer() {
 
         <div className="footer__right">
           <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub">
-            <FiGithub />
+            <FaGithub />
           </a>
           <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
-            <FiLinkedin />
+            <FaLinkedin />
           </a>
           <a href={`mailto:${profile.email}`} aria-label="Email">
             <FiMail />

@@ -8,9 +8,8 @@ import {
   FiSend,
   FiCheckCircle,
   FiAlertCircle,
-  FiGithub,
-  FiLinkedin,
 } from "react-icons/fi";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { fadeUp, stagger, viewportOnce } from "../../motion.js";
 import { profile } from "../../data/content.js";
 import { MaskLine } from "../shared/Reveal.jsx";
@@ -196,10 +195,10 @@ export default function Contact() {
             </motion.div>
             <motion.div className="contact__info-socials" variants={fadeUp}>
               <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub">
-                <FiGithub /> GitHub
+                <FaGithub /> GitHub
               </a>
               <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
-                <FiLinkedin /> LinkedIn
+                <FaLinkedin /> LinkedIn
               </a>
             </motion.div>
           </motion.aside>

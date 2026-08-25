@@ -6,7 +6,8 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { FiGithub, FiLinkedin, FiMail, FiArrowDown, FiDownload } from "react-icons/fi";
+import { FiMail, FiArrowDown, FiDownload } from "react-icons/fi";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { EASE, fadeUp, stagger } from "../../motion.js";
 import { profile, stats } from "../../data/content.js";
 import { MaskLine } from "../shared/Reveal.jsx";
@@ -110,12 +111,12 @@ export default function Hero() {
           <motion.div className="hero__socials" variants={fadeUp}>
             <Magnetic strength={0.45}>
               <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub">
-                <FiGithub />
+                <FaGithub />
               </a>
             </Magnetic>
             <Magnetic strength={0.45}>
               <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
-                <FiLinkedin />
+                <FaLinkedin />
               </a>
             </Magnetic>
             <Magnetic strength={0.45}>
