@@ -559,7 +559,7 @@ export default function GalaxyBackground() {
     let scrollCurrent = 0;
     /* readability veil: 35% dark over the hero (text sits on the bright
        core there too), easing up to 60% once content sections arrive */
-    const VEIL_BASE = 0.35;
+    const VEIL_BASE = 0.45;
     const VEIL_MAX = 0.6;
     let veilTarget = VEIL_BASE;
     let veilCurrent = VEIL_BASE;
@@ -684,7 +684,7 @@ export default function GalaxyBackground() {
           inset: 0,
           zIndex: 0,
           background: "#05030a",
-          opacity: 0.35,
+          opacity: 0.45,
           pointerEvents: "none",
         }}
       />
