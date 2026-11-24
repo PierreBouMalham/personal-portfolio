@@ -10,10 +10,10 @@ export const profile = {
   title: "Full-Stack Engineer",
   availability: "Open to opportunities · Remote",
   headline:
-    "I build the hard parts of products: real-time maps, AI pipelines and payment flows.",
+    "I build production systems from scratch: AI SaaS platforms, payment and banking solutions, and real-time maps at telecom scale.",
   location: "Beirut, Lebanon",
   summary:
-    "Full-stack engineer (React, Spring Boot, Laravel) shipping production systems for companies in Canada, France, Lebanon, the UK and the USA.",
+    "4+ years shipping for companies in Canada, France, the USA, the UK and Lebanon, from Booking.com integrations to nationwide telecom tooling.",
   email: "pierreboumalham3@gmail.com",
   cvUrl: "/Pierre_Bou-Malham_CV.pdf",
   github: "https://github.com/PierreBouMalham",
