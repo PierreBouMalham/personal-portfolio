@@ -163,7 +163,7 @@
   position: relative;
   z-index: 1;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 18px;
   margin-top: 72px;
 }
@@ -203,7 +203,21 @@
     border-radius: 24px;
   }
   .hero__stats {
-    grid-template-columns: repeat(2, 1fr);
     margin-top: 56px;
+  }
+}
+
+@media (max-width: 560px) {
+  .hero__stats {
+    gap: 10px;
+  }
+  .hero__stat {
+    padding: 16px 14px;
+  }
+  .hero__stat-value {
+    font-size: 26px;
+  }
+  .hero__stat-label {
+    font-size: 12px;
   }
 }

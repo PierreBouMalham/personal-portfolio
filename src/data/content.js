@@ -19,9 +19,8 @@ export const profile = {
 
 export const stats = [
   { value: "4+", label: "Years of experience" },
-  { value: "10k+", label: "AI books processed" },
-  { value: "2M+", label: "Map features rendered" },
   { value: "5", label: "Countries shipped in" },
+  { value: "5", label: "Companies" },
 ];
 
 export const experience = [
