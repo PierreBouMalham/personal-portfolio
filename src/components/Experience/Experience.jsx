@@ -25,8 +25,8 @@ export default function Experience() {
             </MaskLine>
           </h2>
           <motion.p className="section__subtitle" variants={fadeUp}>
-            From hotel guest messaging at seekda in Austria to telecom-scale
-            visualization in Paris and real-time fleet platforms in Beirut — a
+            From hotel guest messaging in Austria to telecom-scale
+            visualization in Paris and real-time fleet platforms in Beirut, a
             track record of owning features end to end.
           </motion.p>
         </motion.div>

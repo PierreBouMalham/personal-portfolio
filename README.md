@@ -1,4 +1,4 @@
-# Pierre Bou-Malham — Portfolio
+# Pierre Bou-Malham | Portfolio
 
 Personal portfolio of Pierre Bou-Malham, Full-Stack Engineer.
 
@@ -16,11 +16,11 @@ npm run preview  # preview the production build
 
 ## Structure
 
-- `src/data/content.js` — all CV content (experience, projects, skills…). Edit this file to update the site.
-- `src/components/` — one folder per section (Hero, Experience, Projects, Skills, Education, Contact, Footer).
-- `src/motion.js` — shared animation variants and easing.
-- `src/styles/global.css` — design tokens and shared primitives.
-- `public/Pierre_Bou-Malham_CV.pdf` — the downloadable CV.
+- `src/data/content.js`: all CV content (experience, projects, skills…). Edit this file to update the site.
+- `src/components/`: one folder per section (Hero, Experience, Projects, Skills, Education, Contact, Footer).
+- `src/motion.js`: shared animation variants and easing.
+- `src/styles/global.css`: design tokens and shared primitives.
+- `public/Pierre_Bou-Malham_CV.pdf`: the downloadable CV.
 
 ## Deployment
 

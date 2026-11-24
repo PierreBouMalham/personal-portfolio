@@ -58,7 +58,7 @@ export default function Contact() {
           </h2>
           <motion.p className="section__subtitle" variants={fadeUp}>
             Open to full-time roles, contract work and interesting projects.
-            Drop a message — I usually reply within a day.
+            Drop a message. I usually reply within a day.
           </motion.p>
         </motion.div>
 
@@ -144,7 +144,7 @@ export default function Contact() {
             <div aria-live="polite">
               {status === "success" && (
                 <p className="contact__feedback contact__feedback--success">
-                  <FiCheckCircle aria-hidden="true" /> Message sent — thank you!
+                  <FiCheckCircle aria-hidden="true" /> Message sent, thank you!
                   I&apos;ll get back to you soon.
                 </p>
               )}

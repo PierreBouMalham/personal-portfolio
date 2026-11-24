@@ -1,4 +1,4 @@
-// Shared motion language — one rhythm across the whole site
+// Shared motion language - one rhythm across the whole site
 export const EASE = [0.16, 1, 0.3, 1];
 
 export const fadeUp = {

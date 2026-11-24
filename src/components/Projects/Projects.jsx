@@ -96,7 +96,7 @@ export default function Projects() {
             </MaskLine>
           </h2>
           <motion.p className="section__subtitle" variants={fadeUp}>
-            Production systems serving real users — from an AI publishing
+            Production systems serving real users, from an AI publishing
             platform generating revenue to nationwide telecom tooling.
           </motion.p>
         </motion.div>

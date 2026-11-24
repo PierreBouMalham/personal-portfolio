@@ -8,7 +8,7 @@ import { GammaCorrectionShader } from "three/examples/jsm/shaders/GammaCorrectio
 import { CopyShader } from "three/examples/jsm/shaders/CopyShader.js";
 
 /* ============================================================
-   Pinwheel Galaxy — ~120k additive points in a logarithmic
+   Pinwheel Galaxy - ~120k additive points in a logarithmic
    spiral with differential rotation. Page scroll dives the
    camera into the core, accelerates the spin, expands the disc
    and injects chaos; the cursor pushes points aside.
@@ -59,7 +59,7 @@ function hexToVec3(hex) {
   return new THREE.Vector3(((n >> 16) & 255) / 255, ((n >> 8) & 255) / 255, (n & 255) / 255);
 }
 
-/* ---------------- shaders — arms ---------------- */
+/* ---------------- shaders - arms ---------------- */
 
 const ARMS_VERT = /* glsl */ `
 attribute float size; attribute float id;
@@ -120,7 +120,7 @@ void main() {
 }
 `;
 
-/* ---------------- shaders — bulge ---------------- */
+/* ---------------- shaders - bulge ---------------- */
 
 const BULGE_VERT = /* glsl */ `
 attribute float size; attribute float id;
@@ -153,7 +153,7 @@ void main() {
 }
 `;
 
-/* ---------------- shaders — sparks ---------------- */
+/* ---------------- shaders - sparks ---------------- */
 
 const SPARKS_VERT = /* glsl */ `
 attribute float size; attribute float speed;
@@ -194,14 +194,14 @@ varying float vLife;
 void main() {
   // warm yellow at birth, cooling to pink as it climbs
   vec3 col = mix(uSpark, uSparkTop, smoothstep(0.0, 0.9, vLife));
-  // fade in fast, ease out — never pops, never lingers
+  // fade in fast, ease out - never pops, never lingers
   float fade = sin(clamp(vLife, 0.0, 1.0) * 3.14159265);
   float tex = 1.0 - smoothstep(0.15, 1.0, length(2.0 * gl_PointCoord - 1.0));
   gl_FragColor = vec4(col * tex, tex * fade * uOpacity);
 }
 `;
 
-/* ---------------- shaders — ambient motes ---------------- */
+/* ---------------- shaders - ambient motes ---------------- */
 
 const MOTES_VERT = /* glsl */ `
 attribute float size; attribute float seed; uniform float uTime; uniform vec2 uRes;
@@ -675,7 +675,7 @@ export default function GalaxyBackground() {
         aria-hidden="true"
         style={{ width: "100vw", height: "100vh", display: "block" }}
       />
-      {/* readability veil — dims the scene under content, stays clear at the hero */}
+      {/* readability veil - dims the scene under content, stays clear at the hero */}
       <div
         ref={veilRef}
         aria-hidden="true"

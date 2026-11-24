@@ -9,7 +9,7 @@ export const profile = {
   tagline: "Meta Certified Developer",
   location: "Beirut, Lebanon",
   summary:
-    "Full-stack engineer with 4+ years shipping production systems across Canada, France, Lebanon, the UK and the USA — including an AI-powered SaaS built from scratch, large-scale telecom network visualization, and real-time fleet platforms.",
+    "Full-stack engineer with 4+ years shipping production systems across Canada, France, Lebanon, the UK and the USA, including an AI-powered SaaS built from scratch, large-scale telecom network visualization, and real-time fleet platforms.",
   email: "pierreboumalham3@gmail.com",
   phone: "+961 71 637 891",
   cvUrl: "/Pierre_Bou-Malham_CV.pdf",
@@ -27,7 +27,7 @@ export const experience = [
     role: "Full-Stack Engineer",
     company: "Aspire Software (seekda)",
     location: "Remote · HQ Quebec, Canada",
-    period: "Sep 2026 — Present",
+    period: "Sep 2026 – Present",
     type: "Full-Time",
     highlights: [
       "Helped close deals with dozens of hotels by building Booking.com guest messaging, a feature prospects asked for, end to end across 6 services (Spring Boot, Vert.x, TypeScript) with an AI-assisted inbox.",
@@ -41,7 +41,7 @@ export const experience = [
     role: "Full-Stack Engineer",
     company: "DualCom / Nokia",
     location: "Remote · HQ Paris, France",
-    period: "Jan 2025 — Sep 2026",
+    period: "Jan 2025 – Sep 2026",
     type: "Full-Time",
     highlights: [
       "Built a network visualization app (React / Spring Boot) for Bouygues Telecom, enabling engineers to plan fiber routes and evaluate path metrics across thousands of sites nationwide.",
@@ -55,7 +55,7 @@ export const experience = [
     role: "AI Full-Stack Engineer",
     company: "Talegacy",
     location: "Remote · HQ Paris, France",
-    period: "Sep 2024 — Sep 2026",
+    period: "Sep 2024 – Sep 2026",
     type: "Contractor",
     highlights: [
       "Built an AI-powered book generation SaaS from scratch (React, Laravel, MySQL), processing 10,000+ books for hundreds of active subscribers and dozens of professional ghostwriters.",
@@ -69,7 +69,7 @@ export const experience = [
     role: "Full-Stack Developer",
     company: "Decentra-Tech",
     location: "Beirut, Lebanon",
-    period: "Feb 2023 — Jan 2025",
+    period: "Feb 2023 – Jan 2025",
     type: "Full-Time",
     highlights: [
       "Developed a live vehicle-tracking dashboard using WebSockets and Spring Boot, handling thousands of vehicles in real time with automated reporting and instant telematics.",
@@ -82,7 +82,7 @@ export const experience = [
     role: "Full-Stack Developer",
     company: "CyberRATSS Ltd",
     location: "Swindon, UK",
-    period: "May 2022 — Feb 2023",
+    period: "May 2022 – Feb 2023",
     type: "Full-Time",
     highlights: [
       "Developed a mapping and visualization system for recruiters to filter applicants by location, degree and custom criteria.",
@@ -102,7 +102,7 @@ export const projects = [
     featured: true,
   },
   {
-    title: "Talegacy — AI Book Generation SaaS",
+    title: "Talegacy: AI Book Generation SaaS",
     description:
       "Full SaaS platform built from scratch: AI-written books, cloned-voice audiobooks, multi-format publishing in 4 languages, subscriptions and recurring billing. 10,000+ books generated for hundreds of subscribers.",
     tech: ["React", "Laravel", "MySQL", "OpenAI", "ElevenLabs"],
@@ -120,7 +120,7 @@ export const projects = [
   {
     title: "Real-Time Fleet Tracking Platform",
     description:
-      "Live vehicle-tracking dashboard handling thousands of vehicles simultaneously with WebSockets — instant telematics, automated reporting, and multi-branch operations across Lebanon, UAE and KSA.",
+      "Live vehicle-tracking dashboard handling thousands of vehicles simultaneously over WebSockets, with instant telematics, automated reporting, and multi-branch operations across Lebanon, UAE and KSA.",
     tech: ["Angular", "Spring Boot", "WebSockets"],
     accent: "#06b6d4",
   },
