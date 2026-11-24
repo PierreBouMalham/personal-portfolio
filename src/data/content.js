@@ -1,5 +1,5 @@
-// All site copy lives here. **double asterisks** mark a key result:
-// it renders bold so people skimming catch the numbers.
+// All site copy lives here. In experience bullets, **double asterisks**
+// mark the opening action (same rule as the CV): it renders bold.
 
 export const site = {
   url: "https://pierreboumalham.com",
@@ -63,8 +63,8 @@ export const experience = [
     period: "Feb 2023 – Jan 2025",
     type: "Full-Time",
     highlights: [
-      "Developed a live vehicle-tracking dashboard using WebSockets and Spring Boot, handling **thousands of vehicles in real time** with automated reporting and instant telematics.",
-      "Led the migration of a fleet management system from Angular 12 to 17, enabling **expansion into the UAE and KSA**.",
+      "**Developed a live vehicle-tracking dashboard** using WebSockets and Spring Boot, handling thousands of vehicles in real time with automated reporting and instant telematics.",
+      "**Led the migration of a fleet management system** from Angular 12 to 17, enabling expansion into the UAE and KSA.",
       "**Built a multi-branch garage management system** standardizing registration and admin workflows across international branches.",
     ],
     tech: ["Angular", "Spring Boot", "WebSockets", "PostgreSQL"],
@@ -93,8 +93,8 @@ export const contractWork = [
     period: "Sep 2024 – Jun 2026",
     type: "Contract",
     highlights: [
-      "Built an AI-powered book generation SaaS from scratch (React, Laravel, MySQL), processing **10,000+ books** for hundreds of active subscribers and dozens of professional ghostwriters.",
-      "Integrated Scellius payment processing for subscriptions, recurring billing and coupons via Laravel Queues, securing **tens of thousands of dollars in revenue**.",
+      "**Built an AI-powered book generation SaaS from scratch** (React, Laravel, MySQL), processing 10,000+ books for hundreds of active subscribers and dozens of professional ghostwriters.",
+      "**Integrated Scellius payment processing** for subscriptions, recurring billing and coupons via Laravel Queues, securing tens of thousands of dollars in revenue.",
       "**Implemented OpenAI content generation** and ElevenLabs voice cloning for automated audiobook production.",
       "**Enabled multi-format publishing** (PDF / EPUB / DOCX) with multilingual support across 4 languages, with CI/CD via GitHub Actions.",
     ],

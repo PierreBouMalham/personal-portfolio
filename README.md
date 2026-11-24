@@ -17,7 +17,7 @@ npm run preview  # preview the production build
 
 ## Structure
 
-- `src/data/content.js`: all CV content (employment, contract work, case studies, side projects, skills…). Edit this file to update the site. Wrap a key result in `**double asterisks**` to render it bold.
+- `src/data/content.js`: all CV content (employment, contract work, case studies, side projects, skills…). Edit this file to update the site. Wrap the opening action of each experience bullet in `**double asterisks**` to render it bold (same rule as the CV).
 - `src/components/`: one folder per section (Hero, Experience, Projects, Skills, Education, Contact, Footer).
 - `src/motion.js`: shared animation variants and easing.
 - `src/styles/global.css`: design tokens and shared primitives.
