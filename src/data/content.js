@@ -76,7 +76,7 @@ export const experience = [
     period: "May 2022 – Feb 2023",
     type: "Full-Time",
     highlights: [
-      "**Built HR dashboards** processing thousands of applications through dynamic search and multi-layer filtering, with NgRx state management reducing abandonment rates by 65%.",
+      "**Built advanced HR dashboards** processing thousands of applications with dynamic search and multi-layer filtering (NgRx).",
       "**Developed a mapping and visualization system** for recruiters to filter applicants by location, degree and custom criteria.",
     ],
     tech: ["Angular", "NgRx", "Mapping", "Dashboards"],
