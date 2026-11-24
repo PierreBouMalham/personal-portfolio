@@ -19,14 +19,15 @@ export default function Experience() {
             experience
           </motion.p>
           <h2 className="section__title">
-            <MaskLine>Four years, four countries,</MaskLine>
+            <MaskLine>Four years, five countries,</MaskLine>
             <MaskLine delay={0.12}>
               <span className="gradient-text">production systems that ship.</span>
             </MaskLine>
           </h2>
           <motion.p className="section__subtitle" variants={fadeUp}>
-            From telecom-scale visualization in Paris to real-time fleet
-            platforms in Beirut — a track record of owning features end to end.
+            From hotel guest messaging for a Canadian SaaS to telecom-scale
+            visualization in Paris and real-time fleet platforms in Beirut — a
+            track record of owning features end to end.
           </motion.p>
         </motion.div>
 
