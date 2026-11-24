@@ -1,85 +1,122 @@
-import { useCallback } from "react";
-import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
-import { FiFolder, FiStar } from "react-icons/fi";
-import { fadeUp, stagger, viewportOnce, cardReveal } from "../../motion.js";
-import { projects } from "../../data/content.js";
+import { Fragment } from "react";
+import { motion } from "framer-motion";
+import { FiArrowUpRight, FiArrowDown } from "react-icons/fi";
+import { fadeUp, stagger, viewportOnce } from "../../motion.js";
+import { caseStudies, sideProjects } from "../../data/content.js";
 import { MaskLine } from "../shared/Reveal.jsx";
 import "./Projects.css";
 
-function ProjectCard({ project }) {
-  const reduceMotion = useReducedMotion();
-  const rotateX = useMotionValue(0);
-  const rotateY = useMotionValue(0);
-  const springRotateX = useSpring(rotateX, { stiffness: 160, damping: 18 });
-  const springRotateY = useSpring(rotateY, { stiffness: 160, damping: 18 });
-
-  // Cursor spotlight + 3D tilt: track pointer position over the card
-  const onMouseMove = useCallback(
-    (e) => {
-      const rect = e.currentTarget.getBoundingClientRect();
-      const px = (e.clientX - rect.left) / rect.width - 0.5;
-      const py = (e.clientY - rect.top) / rect.height - 0.5;
-      e.currentTarget.style.setProperty("--mx", `${e.clientX - rect.left}px`);
-      e.currentTarget.style.setProperty("--my", `${e.clientY - rect.top}px`);
-      if (!reduceMotion) {
-        rotateX.set(-py * 7);
-        rotateY.set(px * 7);
-      }
-    },
-    [reduceMotion, rotateX, rotateY]
+// How the system works, as a chain of steps. An ordered list so screen
+// readers get the sequence; the arrows are decoration.
+function Flow({ steps, title }) {
+  return (
+    <figure className="flow">
+      <figcaption className="flow__caption">How it works</figcaption>
+      <ol className="flow__steps" aria-label={`${title}: how it works`}>
+        {steps.map((step, i) => (
+          <Fragment key={step}>
+            <li className={`flow__step ${i === steps.length - 1 ? "flow__step--end" : ""}`}>
+              <span className="flow__index" aria-hidden="true">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              {step}
+            </li>
+            {i < steps.length - 1 && (
+              <li className="flow__arrow" aria-hidden="true">
+                <FiArrowDown />
+              </li>
+            )}
+          </Fragment>
+        ))}
+      </ol>
+    </figure>
   );
+}
 
-  const onMouseLeave = useCallback(() => {
-    rotateX.set(0);
-    rotateY.set(0);
-  }, [rotateX, rotateY]);
-
+function CaseStudy({ study }) {
   return (
     <motion.article
-      className={`project card ${project.featured ? "project--featured" : ""}`}
-      style={{
-        "--project-accent": project.accent,
-        rotateX: springRotateX,
-        rotateY: springRotateY,
-        transformPerspective: 900,
-      }}
-      variants={cardReveal}
-      onMouseMove={onMouseMove}
-      onMouseLeave={onMouseLeave}
-      whileHover={{ y: -6 }}
-      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+      className="case card"
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="visible"
+      viewport={viewportOnce}
+      aria-labelledby={`case-${study.slug}`}
     >
-      <div className="project__spotlight" aria-hidden="true" />
-      <div className="project__top">
-        <span className="project__icon" aria-hidden="true">
-          <FiFolder />
-        </span>
-        {project.featured && (
-          <span className="project__badge">
-            <FiStar aria-hidden="true" /> Featured
-          </span>
-        )}
+      <div className="case__body">
+        <p className="case__kicker">{study.kicker}</p>
+        <h3 className="case__title" id={`case-${study.slug}`}>
+          {study.title}
+        </h3>
+
+        <dl className="case__story">
+          <div>
+            <dt>The problem</dt>
+            <dd>{study.problem}</dd>
+          </div>
+          <div>
+            <dt>What I built</dt>
+            <dd>{study.build}</dd>
+          </div>
+        </dl>
+
+        <div className="case__tech">
+          {study.tech.map((t) => (
+            <span className="chip" key={t}>
+              {t}
+            </span>
+          ))}
+        </div>
       </div>
-      <h3 className="project__title">{project.title}</h3>
-      <p className="project__description">{project.description}</p>
-      <div className="project__tech">
-        {project.tech.map((t) => (
-          <span className="chip" key={t}>
-            {t}
-          </span>
-        ))}
+
+      <div className="case__side">
+        <div className="case__result">
+          <span className="case__result-label">Result</span>
+          <span className="case__result-value gradient-text">{study.result.value}</span>
+          <span className="case__result-text">{study.result.label}</span>
+        </div>
+        <Flow steps={study.flow} title={study.title} />
+      </div>
+    </motion.article>
+  );
+}
+
+function SideProject({ project }) {
+  return (
+    <motion.article
+      className={`side card ${project.url ? "side--linked" : ""}`}
+      variants={fadeUp}
+    >
+      <h3 className="side__title">{project.title}</h3>
+      <p className="side__description">{project.description}</p>
+      <div className="side__footer">
+        <div className="side__tech">
+          {project.tech.map((t) => (
+            <span className="chip" key={t}>
+              {t}
+            </span>
+          ))}
+        </div>
+        {project.url && (
+          <a
+            className="side__link"
+            href={project.url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {project.urlLabel}
+            <FiArrowUpRight aria-hidden="true" />
+            <span className="sr-only"> (opens in a new tab)</span>
+          </a>
+        )}
       </div>
     </motion.article>
   );
 }
 
 export default function Projects() {
-  const featured = projects.filter((p) => p.featured);
-  const others = projects.filter((p) => !p.featured);
-
   return (
     <section className="section projects" id="projects">
-      <div className="glow projects__glow" />
       <div className="container">
         <motion.div
           variants={stagger()}
@@ -88,7 +125,7 @@ export default function Projects() {
           viewport={viewportOnce}
         >
           <motion.p className="section__eyebrow" variants={fadeUp}>
-            projects
+            selected work
           </motion.p>
           <h2 className="section__title">
             <MaskLine>
@@ -96,32 +133,27 @@ export default function Projects() {
             </MaskLine>
           </h2>
           <motion.p className="section__subtitle" variants={fadeUp}>
-            Production systems serving real users, from an AI publishing
-            platform generating revenue to nationwide telecom tooling.
+            Three production systems, told as what was broken, what I built
+            and what changed.
           </motion.p>
         </motion.div>
 
-        <motion.div
-          className="projects__grid projects__grid--featured"
-          variants={stagger(0.12)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewportOnce}
-        >
-          {featured.map((p) => (
-            <ProjectCard project={p} key={p.title} />
+        <div className="projects__cases">
+          {caseStudies.map((s) => (
+            <CaseStudy study={s} key={s.slug} />
           ))}
-        </motion.div>
+        </div>
 
+        <h3 className="projects__side-heading">Side projects</h3>
         <motion.div
-          className="projects__grid"
+          className="projects__side"
           variants={stagger(0.1)}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
         >
-          {others.map((p) => (
-            <ProjectCard project={p} key={p.title} />
+          {sideProjects.map((p) => (
+            <SideProject project={p} key={p.title} />
           ))}
         </motion.div>
       </div>

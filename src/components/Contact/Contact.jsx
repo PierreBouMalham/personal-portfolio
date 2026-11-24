@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import emailjs from "@emailjs/browser";
 import {
   FiMail,
-  FiPhone,
   FiMapPin,
   FiSend,
   FiCheckCircle,
@@ -25,11 +24,27 @@ export default function Contact() {
 
   const sendEmail = async (e) => {
     e.preventDefault();
+    const data = new FormData(formRef.current);
+    // Honeypot: people never see this field, bots fill every input.
+    // Pretend it worked so the bot moves on.
+    if (data.get("website")) {
+      setStatus("success");
+      formRef.current.reset();
+      return;
+    }
     setStatus("sending");
     try {
-      await emailjs.sendForm(EMAILJS_SERVICE, EMAILJS_TEMPLATE, formRef.current, {
-        publicKey: EMAILJS_PUBLIC_KEY,
-      });
+      await emailjs.send(
+        EMAILJS_SERVICE,
+        EMAILJS_TEMPLATE,
+        {
+          name: data.get("name"),
+          email: data.get("email"),
+          subject: data.get("subject"),
+          message: data.get("message"),
+        },
+        { publicKey: EMAILJS_PUBLIC_KEY }
+      );
       setStatus("success");
       formRef.current.reset();
     } catch {
@@ -39,7 +54,6 @@ export default function Contact() {
 
   return (
     <section className="section contact" id="contact">
-      <div className="glow contact__glow" />
       <div className="container">
         <motion.div
           variants={stagger()}
@@ -99,6 +113,17 @@ export default function Contact() {
                   required
                 />
               </div>
+            </div>
+
+            <div className="contact__hp" aria-hidden="true">
+              <label htmlFor="contact-website">Website</label>
+              <input
+                id="contact-website"
+                type="text"
+                name="website"
+                tabIndex={-1}
+                autoComplete="off"
+              />
             </div>
 
             <div className="contact__field">
@@ -165,7 +190,7 @@ export default function Contact() {
             viewport={viewportOnce}
           >
             <motion.a
-              className="contact__info-item card"
+              className="contact__info-item"
               href={`mailto:${profile.email}`}
               variants={fadeUp}
             >
@@ -175,18 +200,7 @@ export default function Contact() {
                 <span className="contact__info-value">{profile.email}</span>
               </div>
             </motion.a>
-            <motion.a
-              className="contact__info-item card"
-              href={`tel:${profile.phone.replace(/\s/g, "")}`}
-              variants={fadeUp}
-            >
-              <FiPhone aria-hidden="true" />
-              <div>
-                <span className="contact__info-label">Phone</span>
-                <span className="contact__info-value">{profile.phone}</span>
-              </div>
-            </motion.a>
-            <motion.div className="contact__info-item card" variants={fadeUp}>
+            <motion.div className="contact__info-item" variants={fadeUp}>
               <FiMapPin aria-hidden="true" />
               <div>
                 <span className="contact__info-label">Location</span>
@@ -194,10 +208,10 @@ export default function Contact() {
               </div>
             </motion.div>
             <motion.div className="contact__info-socials" variants={fadeUp}>
-              <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub">
+              <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub (opens in a new tab)">
                 <FaGithub /> GitHub
               </a>
-              <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+              <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn (opens in a new tab)">
                 <FaLinkedin /> LinkedIn
               </a>
             </motion.div>

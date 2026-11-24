@@ -2,30 +2,21 @@
 export const EASE = [0.16, 1, 0.3, 1];
 
 export const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: EASE },
+    transition: { duration: 0.6, ease: EASE },
   },
 };
 
-export const stagger = (staggerChildren = 0.09, delayChildren = 0) => ({
+export const stagger = (staggerChildren = 0.08, delayChildren = 0) => ({
   hidden: {},
   visible: {
     transition: { staggerChildren, delayChildren },
   },
 });
 
-export const viewportOnce = { once: true, margin: "-80px" };
-
-// Cards settle in with a slight zoom for extra depth
-export const cardReveal = {
-  hidden: { opacity: 0, y: 44, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.8, ease: EASE },
-  },
-};
+// Trigger slightly before an element is fully on screen; `amount: "some"`
+// means even very tall blocks reveal as soon as any part shows
+export const viewportOnce = { once: true, amount: "some", margin: "0px 0px -8% 0px" };

@@ -32,7 +32,7 @@ export default function Education() {
           whileInView="visible"
           viewport={viewportOnce}
         >
-          <motion.div className="education__card card" variants={fadeUp}>
+          <motion.div className="education__card" variants={fadeUp}>
             <span className="education__icon" aria-hidden="true">
               <FiBookOpen />
             </span>
@@ -42,7 +42,7 @@ export default function Education() {
             <span className="education__period">{education.period}</span>
           </motion.div>
 
-          <motion.div className="education__card card" variants={fadeUp}>
+          <motion.div className="education__card" variants={fadeUp}>
             <span className="education__icon" aria-hidden="true">
               <FiAward />
             </span>
@@ -57,7 +57,7 @@ export default function Education() {
             </ul>
           </motion.div>
 
-          <motion.div className="education__card card" variants={fadeUp}>
+          <motion.div className="education__card" variants={fadeUp}>
             <span className="education__icon" aria-hidden="true">
               <FiGlobe />
             </span>

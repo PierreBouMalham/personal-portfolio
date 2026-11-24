@@ -2,16 +2,14 @@ import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js";
-import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js";
 import { ShaderPass } from "three/examples/jsm/postprocessing/ShaderPass.js";
-import { GammaCorrectionShader } from "three/examples/jsm/shaders/GammaCorrectionShader.js";
-import { CopyShader } from "three/examples/jsm/shaders/CopyShader.js";
 
 /* ============================================================
-   Pinwheel Galaxy - ~120k additive points in a logarithmic
-   spiral with differential rotation. Page scroll dives the
-   camera into the core, accelerates the spin, expands the disc
-   and injects chaos; the cursor pushes points aside.
+   Pinwheel Galaxy - additive points in a logarithmic spiral with
+   differential rotation, shown behind the hero only. Scrolling
+   through the hero dives the camera into the core and fades the
+   scene out; once it is gone, rendering stops. The cursor pushes
+   points aside.
    ============================================================ */
 
 const CONFIG = {
@@ -35,21 +33,18 @@ const CONFIG = {
   shimmerAmount: 0.35,
   pointerRadius: 0.35,
   pointerStrength: 0.5,
-  scrollDiveZ: 3.5,
-  scrollSpin: 4,
+  scrollDiveZ: 1.6, // the dive now plays over the hero only, not the whole page
+  scrollSpin: 2,
   scrollExpand: 0.4,
   scrollChaos: 0.5,
   sparkColor: "#ffe066",
   sparkColorTop: "#ff7ae0",
-  sparkCount: 5000,
   sparkRise: 0.17,
   sparkSpeed: 0.22,
   sparkSize: 33,
   cornerBlue: "#1a0833",
   cornerOrange: "#3a0d5a",
 };
-
-const LAYERS = { NONE: 0, TORUS_SCENE: 1, BLOOM_SCENE: 2, ENTIRE_SCENE: 3 };
 
 const Lerp = (a, b, t = 0.075) => a + (b - a) * t;
 const clamp = (v, lo, hi) => Math.max(lo, Math.min(hi, v));
@@ -232,9 +227,6 @@ const FinalPass = {
   uniforms: {
     iTime: { value: 0 },
     tDiffuse: { value: null },
-    torusTexture: { value: null },
-    bloomTexture: { value: null },
-    haloTexture: { value: null },
     iCornerBlue: { value: hexToVec3(CONFIG.cornerBlue) },
     iCornerOrange: { value: hexToVec3(CONFIG.cornerOrange) },
   },
@@ -242,7 +234,7 @@ const FinalPass = {
 varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position, 1.0); }
 `,
   fragmentShader: /* glsl */ `
-uniform float iTime; uniform sampler2D tDiffuse; uniform sampler2D bloomTexture; uniform sampler2D torusTexture; uniform sampler2D haloTexture;
+uniform float iTime; uniform sampler2D tDiffuse;
 uniform vec3 iCornerBlue; uniform vec3 iCornerOrange; varying vec2 vUv;
 vec3 warp3d(vec3 pos, float t) {
   float curv = .8, a = 1.9, b = 0.7; pos *= 2.;
@@ -257,9 +249,8 @@ void main() {
   vec3 col = 1.5 * iCornerBlue * w.x; col *= w.y; col += iCornerOrange * w.z;
   col *= smoothstep(0.6, 1., abs(uv.y));
   col *= smoothstep(-.5, 1., -uv.y * uv.x); col *= smoothstep(-.5, 1., -uv.y * uv.x);
-  vec3 halo = texture2D(haloTexture, vUv).xyz;
   vec3 atmoBg = vec3(0.06, 0.02, 0.10) * (1.0 - 0.4 * length(uv));
-  gl_FragColor = vec4(atmoBg + col * 0.2 + texture2D(bloomTexture, vUv).xyz + texture2D(torusTexture, vUv).xyz + texture2D(tDiffuse, vUv).xyz + halo, 1.);
+  gl_FragColor = vec4(atmoBg + col * 0.2 + texture2D(tDiffuse, vUv).xyz, 1.);
 }
 `,
 };
@@ -268,7 +259,16 @@ void main() {
 
 const R = 1.9; // disc radius
 const H = 0.12; // disc half-thickness
-const COUNT = { arms: 120000, bulge: 2500 };
+// Smaller budget on phones and low-core machines
+const LOW_POWER =
+  typeof window !== "undefined" &&
+  (window.innerWidth < 768 || (navigator.hardwareConcurrency || 8) <= 4);
+const COUNT = {
+  arms: LOW_POWER ? 45000 : 100000,
+  bulge: LOW_POWER ? 1200 : 2500,
+  sparks: LOW_POWER ? 1800 : 4000,
+};
+const MAX_DPR = LOW_POWER ? 1 : 1.5;
 
 function buildArmsGeometry() {
   const N = COUNT.arms;
@@ -319,7 +319,7 @@ function buildBulgeGeometry() {
 }
 
 function buildSparksGeometry() {
-  const N = CONFIG.sparkCount;
+  const N = COUNT.sparks;
   const positions = new Float32Array(N * 3);
   const sizes = new Float32Array(N);
   const speeds = new Float32Array(N);
@@ -363,11 +363,11 @@ function buildMotesGeometry() {
 
 export default function GalaxyBackground() {
   const canvasRef = useRef(null);
-  const veilRef = useRef(null);
+  const wrapRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
-    const veil = veilRef.current;
+    const wrap = wrapRef.current;
 
     /* ---- raw cursor in pixels ---- */
     const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
@@ -375,13 +375,14 @@ export default function GalaxyBackground() {
       mouse.x = e.clientX;
       mouse.y = e.clientY;
     };
-    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
 
     /* ---- renderer / scene / camera ---- */
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
-    renderer.setPixelRatio(window.devicePixelRatio);
-    renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.VSMShadowMap;
+    // Soft-edged points need no MSAA; DPR is capped (3x phones would
+    // otherwise shade 9x the pixels for no visible gain)
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: false });
+    const dpr = () => Math.min(window.devicePixelRatio, MAX_DPR);
+    renderer.setPixelRatio(dpr());
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x000000);
@@ -394,9 +395,6 @@ export default function GalaxyBackground() {
       80
     );
     camera.position.set(0, 0, 3);
-    camera.layers.enable(LAYERS.TORUS_SCENE);
-    camera.layers.enable(LAYERS.BLOOM_SCENE);
-    camera.layers.enable(LAYERS.ENTIRE_SCENE);
     scene.add(camera);
 
     /* ---- shared uniforms ---- */
@@ -418,7 +416,10 @@ export default function GalaxyBackground() {
 
     /* ---- galaxy group: arms + bulge + sparks ---- */
     const instance = new THREE.Group();
-    const POSITION = { visible: [0, 0, 0], hidden: [0, 0, -20] };
+    // On wide screens the core sits right, behind the portrait, so the
+    // hero text stays over the darker outer arms
+    const offsetX = () => (window.innerWidth / window.innerHeight > 1.2 ? 0.75 : 0);
+    const POSITION = { visible: [offsetX(), 0, 0], hidden: [offsetX(), 0, -20] };
     const PARTICLE_POSITION = [0, 0, -0.8];
     const PARTICLE_ROTATION = [0.55, 0, 0];
     instance.position.set(...POSITION.hidden);
@@ -493,7 +494,6 @@ export default function GalaxyBackground() {
       const cloud = new THREE.Points(geo, mat);
       cloud.position.set(...PARTICLE_POSITION);
       cloud.rotation.set(...PARTICLE_ROTATION);
-      cloud.layers.enable(LAYERS.ENTIRE_SCENE);
       instance.add(cloud);
     }
     scene.add(instance);
@@ -505,8 +505,8 @@ export default function GalaxyBackground() {
         uColor: { value: hexToVec3(CONFIG.atmoColor) },
         uRes: {
           value: new THREE.Vector2(
-            window.innerWidth * window.devicePixelRatio,
-            window.innerHeight * window.devicePixelRatio
+            window.innerWidth * dpr(),
+            window.innerHeight * dpr()
           ),
         },
       },
@@ -520,7 +520,6 @@ export default function GalaxyBackground() {
     const geoMotes = buildMotesGeometry();
     const motes = new THREE.Points(geoMotes, matMotes);
     motes.frustumCulled = false;
-    motes.layers.enable(LAYERS.ENTIRE_SCENE);
     motes.onBeforeRender = () => {
       const t = performance.now() / 1000;
       matMotes.uniforms.uTime.value = t * CONFIG.atmoSpeed * 8.0;
@@ -529,49 +528,23 @@ export default function GalaxyBackground() {
     };
     scene.add(motes);
 
-    /* ---- postprocessing: three composers ---- */
-    const size = new THREE.Vector2(window.innerWidth, window.innerHeight);
+    /* ---- postprocessing: scene + corner-glow composite, one chain ---- */
     const renderScene = new RenderPass(scene, camera);
-
-    const torusComposer = new EffectComposer(renderer);
-    torusComposer.renderToScreen = false;
-    torusComposer.addPass(renderScene);
-    torusComposer.addPass(new ShaderPass(GammaCorrectionShader));
-    torusComposer.addPass(new UnrealBloomPass(size.clone(), 0.22, 0.2, 0));
-    torusComposer.addPass(new ShaderPass(CopyShader));
-
-    const bloomComposer = new EffectComposer(renderer);
-    bloomComposer.renderToScreen = false;
-    bloomComposer.addPass(renderScene);
-    bloomComposer.addPass(new UnrealBloomPass(size.clone(), 0.38, 0.55, 0));
-    bloomComposer.addPass(new ShaderPass(GammaCorrectionShader));
-
     const finalPass = new ShaderPass(FinalPass);
-    finalPass.uniforms.bloomTexture.value = bloomComposer.renderTarget1.texture;
-    finalPass.uniforms.torusTexture.value = torusComposer.renderTarget1.texture;
-
     const finalComposer = new EffectComposer(renderer);
     finalComposer.addPass(renderScene);
     finalComposer.addPass(finalPass);
 
-    /* ---- scroll → normalized progress (whole page drives the dive) ---- */
+    /* ---- scroll through the hero → dive + fade ---- */
     let scrollTarget = 0;
     let scrollCurrent = 0;
-    /* readability veil: 35% dark over the hero (text sits on the bright
-       core there too), easing up to 60% once content sections arrive */
-    const VEIL_BASE = 0.45;
-    const VEIL_MAX = 0.6;
-    let veilTarget = VEIL_BASE;
-    let veilCurrent = VEIL_BASE;
     const updateScroll = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight;
-      scrollTarget = max > 0 ? clamp(window.scrollY / max, 0, 1) : 0;
-      const k = clamp(window.scrollY / (window.innerHeight * 0.8), 0, 1);
-      veilTarget = VEIL_BASE + (VEIL_MAX - VEIL_BASE) * k;
+      scrollTarget = clamp(window.scrollY / (window.innerHeight * 0.9), 0, 1);
     };
     window.addEventListener("scroll", updateScroll, { passive: true });
     updateScroll();
     const baseCameraZ = camera.position.z;
+    let hidden = false;
 
     /* ---- pointer → NDC ---- */
     const getScenePointer = () =>
@@ -605,19 +578,19 @@ export default function GalaxyBackground() {
     const onResize = () => {
       const w = window.innerWidth;
       const h = window.innerHeight;
-      const dpr = window.devicePixelRatio;
-      renderer.setPixelRatio(dpr);
+      const ratio = dpr();
+      renderer.setPixelRatio(ratio);
       renderer.setSize(w, h, false);
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
-      for (const composer of [torusComposer, bloomComposer, finalComposer]) {
-        composer.setPixelRatio(dpr);
-        composer.setSize(w, h);
-      }
+      finalComposer.setPixelRatio(ratio);
+      finalComposer.setSize(w, h);
       for (const m of [matArms, matBulge, matSparks]) {
         m.uniforms.uAspect.value = w / h;
       }
-      matMotes.uniforms.uRes.value.set(w * dpr, h * dpr);
+      matMotes.uniforms.uRes.value.set(w * ratio, h * ratio);
+      POSITION.visible[0] = POSITION.hidden[0] = offsetX();
+      instance.position.x = offsetX();
       updateScroll();
     };
     onResize();
@@ -628,6 +601,23 @@ export default function GalaxyBackground() {
     const render = () => {
       rafId = requestAnimationFrame(render);
 
+      scrollCurrent = Lerp(scrollCurrent, scrollTarget, 0.08);
+      // Past the hero the scene is fully faded: skip all GPU work
+      const fade = 1 - scrollCurrent;
+      wrap.style.opacity = fade.toFixed(3);
+      if (fade < 0.01) {
+        if (!hidden) {
+          hidden = true;
+          wrap.style.visibility = "hidden";
+        }
+        t0 = performance.now() / 1000; // no spin jump when it comes back
+        return;
+      }
+      if (hidden) {
+        hidden = false;
+        wrap.style.visibility = "visible";
+      }
+
       // appear-in: slide hidden→visible + staggered shader appear
       const now = performance.now();
       const tSlide = clamp((now - startTime - 500) / 1500, 0, 1);
@@ -637,18 +627,10 @@ export default function GalaxyBackground() {
       const tAnim = clamp((now - startTime) / 2000, 0, 1);
       common.iAnimate.value = tAnim * tAnim * (3 - 2 * tAnim);
 
-      scrollCurrent = Lerp(scrollCurrent, scrollTarget, 0.08);
-      veilCurrent = Lerp(veilCurrent, veilTarget, 0.08);
-      veil.style.opacity = veilCurrent.toFixed(3);
       camera.position.z = baseCameraZ - scrollCurrent * CONFIG.scrollDiveZ;
       galaxyRender(scrollCurrent);
       finalPass.uniforms.iTime.value = now / 1000;
 
-      camera.layers.set(LAYERS.TORUS_SCENE);
-      torusComposer.render();
-      camera.layers.set(LAYERS.BLOOM_SCENE);
-      bloomComposer.render();
-      camera.layers.set(LAYERS.ENTIRE_SCENE);
       finalComposer.render();
     };
     render();
@@ -658,9 +640,7 @@ export default function GalaxyBackground() {
       window.removeEventListener("mousemove", onMouseMove);
       window.removeEventListener("scroll", updateScroll);
       window.removeEventListener("resize", onResize);
-      for (const composer of [torusComposer, bloomComposer, finalComposer]) {
-        composer.dispose();
-      }
+      finalComposer.dispose();
       for (const geo of [geoArms, geoBulge, geoSparks, geoMotes]) geo.dispose();
       for (const mat of [matArms, matBulge, matSparks, matMotes]) mat.dispose();
       renderer.dispose();
@@ -668,26 +648,14 @@ export default function GalaxyBackground() {
   }, []);
 
   return (
-    <>
+    <div ref={wrapRef} className="bg3d" aria-hidden="true">
       <canvas
         ref={canvasRef}
-        className="bg3d"
-        aria-hidden="true"
-        style={{ width: "100vw", height: "100vh", display: "block" }}
+        style={{ width: "100%", height: "100%", display: "block" }}
       />
-      {/* readability veil - dims the scene under content, stays clear at the hero */}
-      <div
-        ref={veilRef}
-        aria-hidden="true"
-        style={{
-          position: "fixed",
-          inset: 0,
-          zIndex: 0,
-          background: "#05030a",
-          opacity: 0.45,
-          pointerEvents: "none",
-        }}
-      />
-    </>
+      {/* readability scrim: darkest behind the text column, lighter
+          toward the portrait, plus a fade into the page at the bottom */}
+      <div className="bg3d__scrim" />
+    </div>
   );
 }

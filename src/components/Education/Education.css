@@ -1,19 +1,14 @@
 .education__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 40px 48px;
 }
 
 .education__card {
-  padding: 30px 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-strong);
   display: flex;
   flex-direction: column;
-}
-
-.education__card:hover {
-  border-color: rgba(96, 165, 250, 0.3);
-  background: var(--surface-hover);
-  transform: translateY(-3px);
 }
 
 .education__icon {
@@ -25,8 +20,8 @@
   border-radius: 14px;
   font-size: 22px;
   color: var(--accent-bright);
-  background: rgba(59, 130, 246, 0.1);
-  border: 1px solid rgba(59, 130, 246, 0.25);
+  background: var(--accent-tint);
+  border: 1px solid var(--accent-line);
   margin-bottom: 20px;
 }
 
@@ -54,8 +49,8 @@
   font-family: var(--font-mono);
   font-size: 12.5px;
   color: var(--accent-bright);
-  background: rgba(59, 130, 246, 0.08);
-  border: 1px solid rgba(59, 130, 246, 0.18);
+  background: var(--accent-tint);
+  border: 1px solid var(--accent-line);
   border-radius: 8px;
   padding: 5px 12px;
   width: fit-content;

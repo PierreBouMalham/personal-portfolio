@@ -2,14 +2,6 @@
   overflow: hidden;
 }
 
-.contact__glow {
-  width: 560px;
-  height: 560px;
-  bottom: -180px;
-  right: -160px;
-  background: rgba(59, 130, 246, 0.1);
-}
-
 .contact__layout {
   position: relative;
   z-index: 1;
@@ -71,8 +63,8 @@
 .contact__field textarea:focus {
   outline: none;
   border-color: var(--accent);
-  background: rgba(59, 130, 246, 0.05);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  background: var(--accent-tint);
+  box-shadow: 0 0 0 3px var(--accent-tint-strong);
 }
 
 .contact__submit {
@@ -128,17 +120,20 @@
   gap: 16px;
 }
 
+.contact__info {
+  gap: 0;
+}
+
 .contact__info-item {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 20px 22px;
+  padding: 20px 4px;
+  border-bottom: 1px solid var(--border);
 }
 
-.contact__info-item:hover {
-  border-color: rgba(96, 165, 250, 0.35);
-  background: var(--surface-hover);
-  transform: translateY(-2px);
+a.contact__info-item:hover .contact__info-value {
+  color: var(--accent-bright);
 }
 
 .contact__info-item > svg {
@@ -170,6 +165,7 @@
 .contact__info-socials {
   display: flex;
   gap: 12px;
+  margin-top: 24px;
 }
 
 .contact__info-socials a {
@@ -185,13 +181,12 @@
   color: var(--text-secondary);
   font-size: 14.5px;
   font-weight: 500;
-  transition: color 0.2s, border-color 0.2s, transform 0.2s var(--ease-out-expo);
+  transition: color 0.2s, border-color 0.2s;
 }
 
 .contact__info-socials a:hover {
   color: var(--accent-bright);
-  border-color: rgba(96, 165, 250, 0.45);
-  transform: translateY(-2px);
+  border-color: var(--accent-line-strong);
 }
 
 @media (max-width: 900px) {
@@ -207,4 +202,13 @@
   .contact__form {
     padding: 26px 22px;
   }
+}
+
+/* Honeypot: off-screen, not display:none (some bots skip hidden inputs) */
+.contact__hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
 }

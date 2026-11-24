@@ -1,164 +1,90 @@
-import { useEffect, useRef, useState } from "react";
-import {
-  motion,
-  AnimatePresence,
-  useReducedMotion,
-  useScroll,
-  useTransform,
-} from "framer-motion";
-import { FiMail, FiArrowDown, FiDownload } from "react-icons/fi";
+import { motion } from "framer-motion";
+import { FiArrowDown } from "react-icons/fi";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { EASE, fadeUp, stagger } from "../../motion.js";
+import { fadeUp, stagger } from "../../motion.js";
 import { profile, stats } from "../../data/content.js";
 import { MaskLine } from "../shared/Reveal.jsx";
-import Magnetic from "../shared/Magnetic.jsx";
 import profilePic from "../../assets/profile.jpg";
 import "./Hero.css";
 
 export default function Hero() {
-  const [roleIndex, setRoleIndex] = useState(0);
-  const reduceMotion = useReducedMotion();
-  const heroRef = useRef(null);
-
-  // Parallax: layers drift apart as the hero scrolls away
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const portraitY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 110]);
-  const contentY = useTransform(scrollYProgress, [0, 1], [0, reduceMotion ? 0 : 55]);
-  const gridOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
-  useEffect(() => {
-    if (reduceMotion) return;
-    const id = setInterval(
-      () => setRoleIndex((i) => (i + 1) % profile.roles.length),
-      3200
-    );
-    return () => clearInterval(id);
-  }, [reduceMotion]);
-
   return (
-    <section className="hero" id="top" ref={heroRef}>
-      {/* Ambient light */}
-      <motion.div
-        className="glow hero__glow--blue"
-        animate={reduceMotion ? {} : { x: [0, 60, -30, 0], y: [0, -40, 30, 0] }}
-        transition={{ duration: 26, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="glow hero__glow--violet"
-        animate={reduceMotion ? {} : { x: [0, -50, 40, 0], y: [0, 50, -30, 0] }}
-        transition={{ duration: 32, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="hero__grid-overlay"
-        aria-hidden="true"
-        style={{ opacity: gridOpacity }}
-      />
-
+    <section className="hero" id="top">
       <div className="container hero__inner">
         <motion.div
           className="hero__content"
-          variants={stagger(0.12, 0.15)}
+          variants={stagger(0.1, 0.15)}
           initial="hidden"
           animate="visible"
         >
-          <motion.div className="hero__copy" style={{ y: contentY }}>
-            <motion.p className="hero__badge" variants={fadeUp}>
-              <span className="hero__badge-dot" />
-              {profile.tagline} · {profile.location}
-            </motion.p>
+          <motion.p className="hero__badge" variants={fadeUp}>
+            <span className="hero__badge-dot" aria-hidden="true" />
+            {profile.availability}
+          </motion.p>
 
-            <h1 className="hero__title">
-              <MaskLine delay={0.25}>Hi, I&apos;m</MaskLine>
-              <MaskLine delay={0.38}>
-                <span className="gradient-text">Pierre Bou&#8209;Malham</span>
-              </MaskLine>
-            </h1>
+          <h1 className="hero__title">
+            <MaskLine delay={0.2}>
+              <span className="gradient-text">Pierre Bou&#8209;Malham</span>
+            </MaskLine>
+            <span className="hero__role">
+              <MaskLine delay={0.32}>{profile.title}</MaskLine>
+            </span>
+          </h1>
 
-            <motion.div className="hero__role" variants={fadeUp} aria-live="polite">
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={profile.roles[roleIndex]}
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -18 }}
-                  transition={{ duration: 0.45, ease: EASE }}
-                >
-                  {profile.roles[roleIndex]}
-                </motion.span>
-              </AnimatePresence>
-            </motion.div>
+          <motion.p className="hero__headline" variants={fadeUp}>
+            {profile.headline}
+          </motion.p>
 
-            <motion.p className="hero__summary" variants={fadeUp}>
-              {profile.summary}
-            </motion.p>
-          </motion.div>
+          <motion.p className="hero__summary" variants={fadeUp}>
+            {profile.summary}
+          </motion.p>
 
           <motion.div className="hero__actions" variants={fadeUp}>
-            <Magnetic>
-              <a href="#projects" className="btn btn--primary">
-                View my work <FiArrowDown aria-hidden="true" />
+            <a href="#projects" className="btn btn--primary">
+              See what I&apos;ve built <FiArrowDown aria-hidden="true" />
+            </a>
+            <div className="hero__socials">
+              <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub (opens in a new tab)">
+                <FaGithub aria-hidden="true" />
               </a>
-            </Magnetic>
-            <Magnetic>
-              <a href={profile.cvUrl} download className="btn btn--ghost">
-                <FiDownload aria-hidden="true" /> Download CV
+              <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn (opens in a new tab)">
+                <FaLinkedin aria-hidden="true" />
               </a>
-            </Magnetic>
-          </motion.div>
-
-          <motion.div className="hero__socials" variants={fadeUp}>
-            <Magnetic strength={0.45}>
-              <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub">
-                <FaGithub />
-              </a>
-            </Magnetic>
-            <Magnetic strength={0.45}>
-              <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
-                <FaLinkedin />
-              </a>
-            </Magnetic>
-            <Magnetic strength={0.45}>
-              <a href={`mailto:${profile.email}`} aria-label="Email">
-                <FiMail />
-              </a>
-            </Magnetic>
+            </div>
           </motion.div>
         </motion.div>
 
         <motion.div
           className="hero__portrait-wrap"
-          initial={{ opacity: 0, scale: 0.92 }}
+          initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.4, ease: EASE }}
-          style={{ y: portraitY }}
+          transition={{ duration: 0.9, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         >
           <div className="hero__portrait-ring" aria-hidden="true" />
           <img
             src={profilePic}
             alt="Portrait of Pierre Bou-Malham"
             className="hero__portrait"
-            width="380"
-            height="380"
+            width="340"
+            height="340"
+            fetchpriority="high"
           />
         </motion.div>
       </div>
 
-      <motion.div
+      <motion.dl
         className="container hero__stats"
-        variants={stagger(0.1, 0.9)}
+        variants={stagger(0.08, 0.7)}
         initial="hidden"
         animate="visible"
       >
         {stats.map((s) => (
-          <motion.div className="hero__stat card" key={s.label} variants={fadeUp}>
-            <span className="hero__stat-value gradient-text">{s.value}</span>
-            <span className="hero__stat-label">{s.label}</span>
+          <motion.div className="hero__stat" key={s.label} variants={fadeUp}>
+            <dt className="hero__stat-label">{s.label}</dt>
+            <dd className="hero__stat-value">{s.value}</dd>
           </motion.div>
         ))}
-      </motion.div>
+      </motion.dl>
     </section>
   );
 }

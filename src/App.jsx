@@ -1,5 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from "react";
-import Lenis from "lenis";
+import { MotionConfig } from "framer-motion";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import Hero from "./components/Hero/Hero.jsx";
 import Experience from "./components/Experience/Experience.jsx";
@@ -8,60 +8,34 @@ import Skills from "./components/Skills/Skills.jsx";
 import Education from "./components/Education/Education.jsx";
 import Contact from "./components/Contact/Contact.jsx";
 import Footer from "./components/Footer/Footer.jsx";
-import Marquee from "./components/shared/Marquee.jsx";
-import ScrollProgress from "./components/shared/ScrollProgress.jsx";
 
-// Three.js scroll-driven background ships as its own chunk, loaded after first paint
+// Three.js hero background ships as its own chunk, loaded after first paint
 const GalaxyBackground = lazy(() => import("./components/shared/GalaxyBackground.jsx"));
 
 export default function App() {
-  const [reduceMotion] = useState(
-    () => window.matchMedia("(prefers-reduced-motion: reduce)").matches
-  );
+  // Decided after mount so the prerendered HTML and the first client
+  // render match (no window access during render)
+  const [showGalaxy, setShowGalaxy] = useState(false);
 
   useEffect(() => {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    });
-
-    let rafId = requestAnimationFrame(function raf(time) {
-      lenis.raf(time);
-      rafId = requestAnimationFrame(raf);
-    });
-
-    // Route in-page anchors through Lenis so they glide instead of jumping
-    const onClick = (e) => {
-      const anchor = e.target.closest('a[href^="#"]');
-      if (!anchor) return;
-      const target = document.querySelector(anchor.getAttribute("href"));
-      if (!target) return;
-      e.preventDefault();
-      lenis.scrollTo(target, { offset: -80 });
-    };
-    document.addEventListener("click", onClick);
-
-    return () => {
-      cancelAnimationFrame(rafId);
-      document.removeEventListener("click", onClick);
-      lenis.destroy();
-    };
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const saveData = navigator.connection?.saveData;
+    setShowGalaxy(!reduce && !saveData);
   }, []);
 
   return (
-    <>
-      {!reduceMotion && (
+    <MotionConfig reducedMotion="user">
+      <a href="#main" className="skip-link">
+        Skip to content
+      </a>
+      {showGalaxy && (
         <Suspense fallback={null}>
           <GalaxyBackground />
         </Suspense>
       )}
-      <ScrollProgress />
       <Navbar />
-      <main id="main">
+      <main id="main" tabIndex={-1}>
         <Hero />
-        <Marquee />
         <Experience />
         <Projects />
         <Skills />
@@ -69,6 +43,6 @@ export default function App() {
         <Contact />
       </main>
       <Footer />
-    </>
+    </MotionConfig>
   );
 }

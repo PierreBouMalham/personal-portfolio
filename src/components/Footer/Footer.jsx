@@ -8,7 +8,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer__inner">
         <div className="footer__left">
-          <a href="#top" className="footer__logo">
+          <a href="#top" className="footer__logo" aria-label="Pierre Bou-Malham, back to top">
             PB<span>.</span>
           </a>
           <p className="footer__copy">
@@ -18,10 +18,10 @@ export default function Footer() {
         </div>
 
         <div className="footer__right">
-          <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub">
+          <a href={profile.github} target="_blank" rel="noreferrer" aria-label="GitHub (opens in a new tab)">
             <FaGithub />
           </a>
-          <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn">
+          <a href={profile.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn (opens in a new tab)">
             <FaLinkedin />
           </a>
           <a href={`mailto:${profile.email}`} aria-label="Email">

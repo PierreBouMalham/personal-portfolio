@@ -15,10 +15,40 @@
   width: 2px;
   background: linear-gradient(
     to bottom,
-    rgba(96, 165, 250, 0.6),
+    rgba(232, 121, 249, 0.6),
     rgba(139, 92, 246, 0.35),
     rgba(255, 255, 255, 0.06)
   );
+}
+
+.timeline__group {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0 0 24px;
+}
+
+.timeline + .timeline__group {
+  margin-top: 72px;
+}
+
+.timeline__group-note {
+  color: var(--text-secondary);
+  font-size: 15px;
+  margin: -14px 0 24px;
+}
+
+/* Contract work: dimmer rail and hollow markers set it apart */
+.timeline--contract::before {
+  background: linear-gradient(to bottom, rgba(139, 92, 246, 0.45), rgba(255, 255, 255, 0.06));
+}
+
+.timeline--contract .timeline__dot {
+  border-color: var(--accent-violet);
+  box-shadow: none;
 }
 
 .timeline__item {
@@ -43,13 +73,6 @@
 
 .timeline__card {
   padding: 30px 32px;
-}
-
-.timeline__card:hover {
-  border-color: rgba(96, 165, 250, 0.35);
-  background: var(--surface-hover);
-  box-shadow: 0 20px 50px -24px rgba(59, 130, 246, 0.25);
-  transform: translateY(-3px);
 }
 
 .timeline__head {
@@ -117,6 +140,38 @@
   font-size: 15px;
 }
 
+.timeline__highlights strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.timeline__more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  margin: -10px 0 12px -10px;
+  padding: 0 10px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  color: var(--accent-bright);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.timeline__more:hover {
+  background: var(--accent-tint);
+}
+
+.timeline__more svg {
+  transition: transform 0.25s var(--ease-out-expo);
+}
+
+.timeline__chevron--up {
+  transform: rotate(180deg);
+}
+
 .timeline__highlights li::before {
   content: "";
   position: absolute;
@@ -133,22 +188,6 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-}
-
-.chip {
-  font-family: var(--font-mono);
-  font-size: 12.5px;
-  color: var(--text-secondary);
-  background: rgba(59, 130, 246, 0.08);
-  border: 1px solid rgba(59, 130, 246, 0.18);
-  border-radius: 8px;
-  padding: 5px 12px;
-  transition: color 0.2s, border-color 0.2s;
-}
-
-.chip:hover {
-  color: var(--accent-bright);
-  border-color: rgba(96, 165, 250, 0.45);
 }
 
 @media (max-width: 640px) {

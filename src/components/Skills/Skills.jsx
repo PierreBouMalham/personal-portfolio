@@ -67,8 +67,8 @@ export default function Skills() {
             </MaskLine>
           </h2>
           <motion.p className="section__subtitle" variants={fadeUp}>
-            Frameworks and tools I use daily to take products from idea to
-            production.
+            The stack I work in, grouped by layer, from interface to
+            database.
           </motion.p>
         </motion.div>
 
@@ -80,7 +80,7 @@ export default function Skills() {
           viewport={viewportOnce}
         >
           {skillGroups.map((group) => (
-            <motion.div className="skills__group card" key={group.label} variants={fadeUp}>
+            <motion.div className="skills__group" key={group.label} variants={fadeUp}>
               <h3 className="skills__group-title">{group.label}</h3>
               <ul className="skills__list">
                 {group.skills.map((skill) => {

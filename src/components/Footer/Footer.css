@@ -49,18 +49,17 @@
   border: 1px solid var(--border);
   color: var(--text-secondary);
   font-size: 18px;
-  transition: color 0.2s, border-color 0.2s, transform 0.2s var(--ease-out-expo);
+  transition: color 0.2s, border-color 0.2s;
 }
 
 .footer__right a:hover {
   color: var(--accent-bright);
-  border-color: rgba(96, 165, 250, 0.45);
-  transform: translateY(-3px);
+  border-color: var(--accent-line-strong);
 }
 
 .footer__top {
-  background: rgba(59, 130, 246, 0.1) !important;
-  border-color: rgba(59, 130, 246, 0.3) !important;
+  background: var(--accent-tint) !important;
+  border-color: var(--accent-line) !important;
   color: var(--accent-bright) !important;
 }
 
